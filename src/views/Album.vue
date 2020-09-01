@@ -4,19 +4,11 @@
       <span>— 相册 —</span>
     </div>
 
-    <img src="@/assets/album/1.jpg" />
-    <img src="@/assets/album/2.jpg" />
-    <img src="@/assets/album/3.jpg" />
-    <img src="@/assets/album/4.jpg" />
-    <img src="@/assets/album/5.jpg" />
-    <img src="@/assets/album/6.jpg" />
-    <img src="@/assets/album/7.jpg" />
-    <img src="@/assets/album/8.jpg" />
-    <img src="@/assets/album/9.jpg" />
-    <img src="@/assets/album/10.jpg" />
-    <img src="@/assets/album/11.jpg" />
-    <img src="@/assets/album/12.jpg" />
-    <img src="@/assets/album/13.jpg" />
+    <img
+      v-for="(i, index) in 13"
+      :key="index"
+      :src="`./album/${index + 1}.jpg`"
+    />
 
     <div class="text flex justify-center">
       <span>— 更多请到访 —</span>

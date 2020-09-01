@@ -5,7 +5,7 @@
     :style="{ height: `${height}px`, width: `${width}px` }"
   >
     <div class="cover-container">
-      <img class="cover" src="@/assets/cover.jpg" alt="" />
+      <img class="cover" :src="`./cover.jpg`" alt="" />
     </div>
     <div class="flex-sub flex flex-direction align-center">
       <div style="font-size:10vw;margin-top:8vw;letter-spacing:2vw;">
@@ -36,7 +36,9 @@
       <div class="flex remark align-center">
         <div class="flex-sub" style="text-align:right;">2020.10.04</div>
         <span style="font-weight:bold;margin:0 2vw;"> |</span>
-        <div class="flex-sub">江店孜镇汪庄</div>
+        <div class="flex-sub" style="letter-spacing:0vw;">
+          {{ countDown }}
+        </div>
       </div>
 
       <div class="flex-sub flex flex-direction justify-center align-center">
@@ -60,6 +62,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      countDown: ""
+    };
+  },
   computed: {
     name() {
       return this.$route.query.name;
@@ -71,7 +78,30 @@ export default {
       return window.innerWidth;
     }
   },
+  created() {
+    this.setCountDown();
+    setInterval(this.setCountDown, 1000);
+  },
   methods: {
+    setCountDown() {
+      const now = new Date().getTime();
+      const date = new Date(Date.parse("2020/10/04 12:00:00")).getTime();
+      const totalSecond = (date - now) / 1000;
+
+      if (totalSecond < 0) {
+        this.countDown = `已 相 守 ${parseInt(
+          -totalSecond / 60 / 60 / 24
+        )}/+∞ 天`;
+        return;
+      }
+
+      const day = parseInt(totalSecond / 60 / 60 / 24);
+      const hour = parseInt((totalSecond / 60 / 60) % 24);
+      const minute = parseInt((totalSecond / 60) % 60);
+      const second = parseInt(totalSecond % 60);
+
+      this.countDown = `${day} 天 ${hour} 时 ${minute} 分 ${second} 秒`;
+    },
     handleMore() {
       this.$router.push({
         name: "Detail",
@@ -123,6 +153,7 @@ export default {
   margin-top: 6vw;
   font-size: 3vw;
   letter-spacing: 1vw;
+  align-self: stretch;
 }
 
 .cover-text {
