@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="detail-container"
-    :style="{ height: `${height}px`, width: `${width}px` }"
-  >
+  <div class="detail-container">
     <img class="background-img" src="@/assets/background.jpg" alt="" />
     <div v-if="name" class="main-detail flex flex-direction align-center">
       <span class="name"> {{ name }}</span>
@@ -29,51 +26,47 @@
 </template>
 
 <script>
-import linq from "linq";
+import linq from 'linq'
 
 export default {
   computed: {
     name() {
-      const qn = this.$route.query.name;
-      console.log("name", qn, this.$store.state.config.people);
+      const qn = this.$route.query.name
+      console.log('name', qn, this.$store.state.config.people)
       if (
         linq
           .from(this.$store.state.config.people)
           .where(p => p === qn)
           .count() == 0
       ) {
-        return null;
+        return null
       }
 
-      return qn;
-    },
-    height() {
-      return window.innerHeight;
-    },
-    width() {
-      return window.innerWidth;
+      return qn
     }
   },
   methods: {
     handleAlbum() {
       this.$router.push({
-        name: "Album"
-      });
+        name: 'Album'
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
 .detail-container {
   position: relative;
+  height: 1920px;
+  width: 1080px;
 
   .background-img {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
-    width: 100vw;
+    width: 100%;
     object-fit: cover;
     z-index: -1;
   }
@@ -84,57 +77,60 @@ export default {
     width: 100%;
 
     .name {
-      font-size: 10vw;
-      margin-top: 10vw;
-      letter-spacing: 4vw;
+      font-size: 120px;
+      margin-top: 60px;
+      letter-spacing: 20px;
     }
     .title {
       align-self: flex-start;
-      font-size: 5.4vw;
-      margin: 6vw 2vw 0 2vw;
-      letter-spacing: 2vw;
+      font-size: 70px;
+      font-weight: 340;
+      margin: 40px 120px 0 20px;
+      letter-spacing: 20px;
     }
     .content {
       align-self: flex-start;
-      font-size: 4vw;
+      font-size: 46px;
       font-weight: 300;
-      margin: 1vw 2vw 0 2vw;
-      letter-spacing: 1vw;
+      margin: 10px 20px 0 20px;
+      letter-spacing: 10px;
     }
     .subtitle {
-      font-size: 5.4vw;
-      margin-top: 6vw;
+      font-size: 60px;
+      margin-top: 60px;
       font-weight: 300;
-      letter-spacing: 3vw;
+      letter-spacing: 40px;
     }
     .hori-line {
       align-self: stretch;
       position: relative;
-      margin-top: 6vw;
+      margin-top: 80px;
 
       .line {
-        width: 100vw;
-        height: 2px;
+        width: 100%;
+        height: 4px;
         background: red;
       }
       .line-heart {
         position: absolute;
         color: red;
-        font-size: 6vw;
-        right: 10vw;
+        font-size: 70px;
+        right: 100px;
       }
     }
     .nav-btn {
-      align-self: flex-start;
-      font-size: 5.4vw;
-      margin: 6vw 4vw 0 4vw;
-      letter-spacing: 2vw;
+      position: absolute;
+      bottom: 160px;
+      align-self: center;
+      font-size: 60px;
+      letter-spacing: 20px;
       background: #f00;
       color: white;
       border: 2px solid red;
       border-radius: 2vw;
-      padding: 2vw 4vw;
+      padding: 20px 40px;
       outline: unset;
+      width: 90%;
     }
   }
 

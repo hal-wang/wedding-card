@@ -4,11 +4,7 @@
       <span>— 相册 —</span>
     </div>
 
-    <img
-      v-for="(i, index) in 13"
-      :key="index"
-      :src="`./album/${index + 1}.jpg`"
-    />
+    <img v-for="(i, index) in 13" :key="index" :src="`./album/${index + 1}.jpg`" />
 
     <div class="text flex justify-center">
       <span>— 更多请到访 —</span>
@@ -17,24 +13,26 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style lang="scss" scoped>
 .album-container {
-  margin: 2vw;
+  height: 1880px;
+  width: 1040px;
+  margin: 20px;
 
   img {
-    width: 96vw;
+    width: 1040px;
     object-fit: contain;
-    margin-bottom: 2vw;
+    margin-bottom: 20px;
   }
 
   .text {
-    font-size: 6vw;
-    letter-spacing: 2vw;
+    font-size: 60px;
+    letter-spacing: 30px;
     font-weight: 300;
-    margin: 2vw 0 4vw 0;
+    margin: 30px 0 50px 0;
   }
 }
 </style>
