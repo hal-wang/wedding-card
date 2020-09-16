@@ -127,7 +127,7 @@ export default {
       background: #f00;
       color: white;
       border: 2px solid red;
-      border-radius: 2vw;
+      border-radius: 4px;
       padding: 20px 40px;
       outline: unset;
       width: 90%;
