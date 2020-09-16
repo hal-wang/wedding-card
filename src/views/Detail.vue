@@ -2,22 +2,22 @@
   <div class="detail-container">
     <img class="background-img" src="@/assets/background.jpg" alt="" />
     <div v-if="name" class="main-detail flex flex-direction align-center">
-      <span class="name"> {{ name }}</span>
-      <span class="subtitle">诚邀您参加我们的婚礼</span>
+      <span class="name animate__animated animate__backInDown"> {{ name }}</span>
+      <span class="subtitle animate__animated animate__fadeInLeft">诚邀您参加我们的婚礼</span>
       <div class="hori-line flex align-center">
-        <div class="line"></div>
-        <div class="line-heart">
+        <div class="line animate__animated animate__fadeInLeft animate__delay-2s"></div>
+        <div class="line-heart animate__animated animate__shakeX animate__infinite animate__slower">
           <svg-icon icon-class="heart" />
         </div>
       </div>
-      <span class="title">时间</span>
-      <span class="content">2020年10月04日 中午12:00</span>
-      <span class="title">详细地址</span>
-      <span class="content">安徽省阜阳市颍上县江店孜镇杨庄村汪庄</span>
-      <span class="title">电话/微信</span>
-      <span class="content">18756858797</span>
+      <span class="title animate__animated animate__fadeInLeft">时间</span>
+      <span class="content animate__animated animate__fadeInLeft">2020年10月04日 中午12:00</span>
+      <span class="title animate__animated animate__fadeInLeft">详细地址</span>
+      <span class="content animate__animated animate__fadeInLeft">安徽省阜阳市颍上县江店孜镇杨庄村汪庄</span>
+      <span class="title animate__animated animate__fadeInLeft">电话/微信</span>
+      <span class="content animate__animated animate__fadeInLeft">18756858797</span>
 
-      <button class="nav-btn" @click="handleAlbum">我们的照片 >>></button>
+      <button class="nav-btn animate__animated animate__fadeInUp" @click="handleAlbum">我们的照片 >>></button>
     </div>
     <div v-else class="not-found flex justify-center align-center">
       <span>暂未收录</span>

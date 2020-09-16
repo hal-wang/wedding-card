@@ -1,22 +1,30 @@
 <template>
   <div class="flex flex-direction home-container" style="position: relative">
-    <div class="cover-container">
+    <div class="cover-container animate__animated animate__zoomInUp animate__duration-2s">
       <img class="cover" :src="`./cover.jpg`" alt="" />
     </div>
     <div class="flex-sub flex flex-direction align-center">
-      <div style="font-size: 80px; margin-top: 60px; letter-spacing: 40px">我们结婚啦</div>
+      <div class="animate__animated animate__tada animate__repeat-2" style="font-size: 80px; margin-top: 60px; letter-spacing: 40px">我们结婚啦</div>
       <div class="flex align-center we">
         <div class="flex-sub">新郎：汪文豪</div>
-        <div style="margin: 0 60px; font-size: 100px; color: red">
+        <div style="margin: 0 60px; font-size: 100px; color: red" class="animate__animated animate__heartBeat animate__infinite">
           <svg-icon icon-class="heart" />
         </div>
         <div class="flex-sub">新娘：谢娜娜</div>
       </div>
       <div class="name-line flex align-center justify-center">
         <div class="line" />
-        <svg-icon icon-class="rhombus" style="position: absolute; font-size: 40px; left: 60px" />
+        <svg-icon
+          icon-class="rhombus"
+          style="position: absolute; font-size: 40px; left: 60px"
+          class="animate__animated animate__fadeInRight animate__delay-2s"
+        />
         <svg-icon icon-class="rhombus" style="position: absolute; font-size: 60px" />
-        <svg-icon icon-class="rhombus" style="position: absolute; font-size: 40px; right: 60px" />
+        <svg-icon
+          icon-class="rhombus"
+          style="position: absolute; font-size: 40px; right: 60px"
+          class="animate__animated animate__fadeInLeft animate__delay-2s"
+        />
       </div>
       <div class="flex remark align-center">
         <div class="flex-sub" style="text-align: right">2020.10.04</div>
@@ -31,15 +39,15 @@
       </div>
     </div>
 
-    <div class="cover-text flex flex-direction align-center">
+    <div class="cover-text flex flex-direction align-center animate__animated animate__fadeInLeft animate__delay-2s">
       <span style="font-size: 80px; letter-spacing: 28px">LOVE</span>
       <span>执子之手</span>
       <span>与之偕老</span>
     </div>
 
-    <div class="ver-text">我们的婚礼，诚邀您见证</div>
+    <div class="ver-text animate__animated animate__fadeInRight animate__delay-2s">我们的婚礼，诚邀您见证</div>
 
-    <div class="border-line" />
+    <div class="border-line animate__animated animate__rotateIn animate__slow" />
   </div>
 </template>
 
