@@ -1,37 +1,45 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
-    component: () => import("@/views/Home"),
+    path: '/',
+    name: 'Home',
+    component: () => import('@/views/Home'),
     meta: {
-      title: "我们结婚啦",
-    },
+      title: '我们结婚啦'
+    }
   },
   {
-    path: "/d",
-    name: "Detail",
-    component: () => import("@/views/Detail"),
+    path: '/d',
+    name: 'Detail',
+    component: () => import('@/views/Detail'),
     meta: {
-      title: "喜帖详情",
-    },
+      title: '喜帖详情'
+    }
   },
   {
-    path: "/album",
-    name: "Album",
-    component: () => import("@/views/Album"),
+    path: '/album',
+    name: 'Album',
+    component: () => import('@/views/Album'),
     meta: {
-      title: "相册",
-    },
+      title: '相册'
+    }
   },
-];
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import('@/views/Admin'),
+    meta: {
+      title: '管理'
+    }
+  }
+]
 
 const router = new VueRouter({
-  routes,
-});
+  routes
+})
 
-export default router;
+export default router
