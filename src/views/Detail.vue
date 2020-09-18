@@ -136,11 +136,11 @@ export default {
 
   .not-found {
     font-weight: 300;
-    font-size: 10vw;
-    letter-spacing: 6vw;
+    font-size: 100px;
+    letter-spacing: 100px;
     height: 60%;
-    width: calc(100% - 6vw);
-    margin-left: 6vw;
+    width: 900px;
+    margin-left: 140px;
   }
 }
 </style>
