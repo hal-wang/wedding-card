@@ -92,6 +92,9 @@ export default {
     max-width: 900px;
     background-color: black;
     color: white;
+    padding: 10px;
+    border: 0;
+    outline: none;
 
     &:hover {
       opacity: 0.8;
@@ -100,6 +103,7 @@ export default {
 
     &:active {
       opacity: 0.7;
+      border: 0;
     }
   }
 }

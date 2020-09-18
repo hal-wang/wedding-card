@@ -13,7 +13,7 @@ module.exports = {
     const fieldResult = await getField(db, 'wedding_card', 'people', 'people')
     if (!fieldResult.success) return fieldResult.badRequest
     const people = fieldResult.value
-    if (![people].includes(name)) {
+    if (!people.includes(name)) {
       people.push(name)
       const updateResult = await updateField(db, 'wedding_card', 'people', 'people', people)
       if (!updateResult.success) return updateResult.badRequest
