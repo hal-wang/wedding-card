@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import axios from 'axios'
+import post from '@/utils/request'
 
 Vue.config.productionTip = false
 
@@ -12,10 +12,15 @@ import '@/icons'
 import animated from 'animate.css'
 Vue.use(animated)
 
-axios
-  .get('./config.json')
-  .then(result => {
-    store.dispatch('setConfig', result.data)
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || '我们结婚啦'
+  next()
+})
+
+post('people', 'get')
+  .then(res => {
+    store.dispatch('setPeople', res.data)
+
     new Vue({
       el: '#app',
       store,
@@ -26,8 +31,3 @@ axios
   .catch(error => {
     console.log('get config error...' + error)
   })
-
-router.beforeEach((to, from, next) => {
-  document.title = to.meta.title || '我们结婚啦'
-  next()
-})

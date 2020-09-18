@@ -32,10 +32,10 @@ export default {
   computed: {
     name() {
       const qn = this.$route.query.name
-      console.log('name', qn, this.$store.state.config.people)
+      console.log('name', qn, this.$store.state.people)
       if (
         linq
-          .from(this.$store.state.config.people)
+          .from(this.$store.state.people)
           .where(p => p === qn)
           .count() == 0
       ) {

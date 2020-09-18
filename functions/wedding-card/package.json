@@ -1,0 +1,28 @@
+{
+  "name": "cloudbase-main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cloudbase/node-sdk": "^2.3.3",
+    "axios": "^0.20.0",
+    "cos-nodejs-sdk-v5": "^2.7.0",
+    "crypto": "^1.0.1",
+    "linq": "^3.2.3",
+    "md5": "^2.3.0",
+    "moment": "^2.27.0",
+    "nodemailer": "^6.4.11",
+    "tencentcloud-sdk-nodejs": "^3.0.245",
+    "tenpay": "^2.1.18"
+  },
+  "devDependencies": {
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "prettier": "^2.1.1"
+  }
+}

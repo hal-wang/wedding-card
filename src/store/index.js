@@ -1,21 +1,21 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    config: null,
+    people: null
   },
   mutations: {
-    SET_CONFIG: (state, val) => {
-      state.config = val;
-    },
+    SET_PEOPLE: (state, val) => {
+      state.people = val
+    }
   },
   actions: {
-    setConfig({ commit }, val) {
-      commit("SET_CONFIG", val);
-    },
+    setPeople({ commit }, val) {
+      commit('SET_PEOPLE', val)
+    }
   },
-  modules: {},
-});
+  modules: {}
+})
