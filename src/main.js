@@ -19,17 +19,9 @@ router.beforeEach((to, from, next) => {
 import post from '@/utils/request'
 Vue.prototype.post = post
 
-post('people', 'get')
-  .then(res => {
-    store.dispatch('setPeople', res.data)
-
-    new Vue({
-      el: '#app',
-      store,
-      router,
-      render: h => h(App)
-    })
-  })
-  .catch(error => {
-    console.log('get config error...' + error)
-  })
+new Vue({
+  el: '#app',
+  store,
+  router,
+  render: h => h(App)
+})

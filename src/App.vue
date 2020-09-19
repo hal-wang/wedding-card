@@ -36,6 +36,15 @@ export default {
         return `${top}px 0`
       }
     }
+  },
+  created() {
+    this.post('people', 'get')
+      .then(res => {
+        this.$store.dispatch('setPeople', res.data)
+      })
+      .catch(error => {
+        console.log('get config error...' + error)
+      })
   }
 }
 </script>
