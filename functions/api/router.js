@@ -1,4 +1,5 @@
 const notFound = require('./result/notFound')
+const errRequest = require('./result/errRequest')
 
 module.exports = async function ({ headers, data, path, params }) {
   let actionModule
@@ -9,5 +10,9 @@ module.exports = async function ({ headers, data, path, params }) {
     return notFound('找不到路径：' + err)
   }
 
-  return await actionModule.action({ headers, data, path, params })
+  try {
+    return await actionModule.action({ headers, data, path, params })
+  } catch (err) {
+    return errRequest(err.message)
+  }
 }
