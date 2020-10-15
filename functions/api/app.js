@@ -1,5 +1,9 @@
+const global = require('./global')
+
 const tcb = require('@cloudbase/node-sdk')
-const app = tcb.init()
+const app = tcb.init({
+  env: global.env
+})
 
 module.exports.app = app
 

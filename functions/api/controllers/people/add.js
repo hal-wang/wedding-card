@@ -22,8 +22,10 @@ module.exports = {
       return noContent()
     }
 
-    const setRes = await db.collection('people').doc(name).set({})
-    throwResBadContent(countRes)
+    const addRes = await db.collection('people').add({
+      _id: name
+    })
+    throwResBadContent(addRes)
     return noContent
   }
 }
