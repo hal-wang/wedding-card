@@ -1,6 +1,6 @@
 {
   "name": "wedding-card-cloudbase",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "testEnvironment": "node"
   },
   "author": "hbrwang",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@cloudbase/node-sdk": "^2.4.0",
     "@hbrwang/cloudbase-access": "^0.5.22",

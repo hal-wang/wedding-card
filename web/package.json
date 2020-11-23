@@ -1,13 +1,14 @@
 {
   "name": "wedding-card",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.2.0",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "deploy": "tcb hosting deploy ./dist/ -e wedding-4gbufc140e845226"
   },
+  "author": "hbrwang",
+  "license": "MIT",
   "dependencies": {
     "animate.css": "^4.1.1",
     "axios": "^0.20.0",
@@ -34,21 +35,6 @@
     "prettier": "^2.1.2",
     "sass-loader": "^10.0.2",
     "vue-template-compiler": "^2.6.12"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended",
-      "@vue/prettier"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
   },
   "browserslist": [
     "> 1%",

@@ -43,8 +43,14 @@ export default {
     }
   },
   async mounted() {
+    if (!this.name) {
+      this.loaded = true
+      this.exist = false
+      return
+    }
+
     const res = await this.$post('people', 'exist', {
-      name: this.$route.query.name
+      name: this.name
     })
     if (res.isErr()) {
       this.loaded = true
