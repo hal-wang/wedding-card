@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": ".",
+    "target": "ES2020",
+    "strict": true
+  },
+  "exclude": ["controllers", "models", "lib", "index.d.ts", "test"]
+}
