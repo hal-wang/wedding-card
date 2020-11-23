@@ -17,7 +17,7 @@ router.beforeEach((to, from, next) => {
 })
 
 import post from '@/utils/request'
-Vue.prototype.post = post
+Vue.prototype.$post = post
 
 new Vue({
   el: '#app',

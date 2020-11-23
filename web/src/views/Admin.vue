@@ -1,8 +1,8 @@
 <template>
   <div class="admin-container flex flex-direction align-center justify-center">
     <img class="background-img" src="@/assets/background.jpg" alt="" />
-    <input class="name" v-model="name" type="text" placeholder="填写人名" autocomplete="new-password" />
-    <input class="password" v-model="password" type="password" placeholder="管理员密码" autocomplete="new-password" />
+    <input v-model="name" class="name" type="text" placeholder="填写人名" autocomplete="new-password" />
+    <input v-model="password" class="password" type="password" placeholder="管理员密码" autocomplete="new-password" />
     <button class="btn" @click="handleCreate">生成</button>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {
     }
   },
   methods: {
-    handleCreate() {
+    async handleCreate() {
       if (!this.name) {
         alert('请填写人名')
         return
@@ -40,18 +40,20 @@ export default {
         return
       }
 
-      this.post('people', 'add', {
-        name: this.name,
-        password: this.password
-      })
-        .then(res => {
-          window.open(this.qrApiUrl, '_blank')
-          this.name = ''
-        })
-        .catch(error => {
-          const res = error.response
-          alert(res.data)
-        })
+      const res = await this.$post(
+        'people',
+        'add',
+        {
+          name: this.name
+        },
+        {
+          admin: this.password
+        }
+      )
+      if (res.isErr()) return
+
+      window.open(this.qrApiUrl, '_blank')
+      this.name = ''
     }
   }
 }

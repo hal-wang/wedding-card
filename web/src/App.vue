@@ -37,14 +37,11 @@ export default {
       }
     }
   },
-  created() {
-    this.post('people', 'get')
-      .then(res => {
-        this.$store.dispatch('setPeople', res.data)
-      })
-      .catch(error => {
-        console.log('get config error...' + error)
-      })
+  async created() {
+    const res = await this.$post('people', 'get')
+    if (res.isErr()) return
+
+    this.$store.dispatch('setPeople', res.data)
   }
 }
 </script>
