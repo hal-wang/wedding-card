@@ -1,7 +1,14 @@
 <template>
   <div class="detail-container">
     <img class="background-img" src="@/assets/background.jpg" alt="" />
-    <div v-if="name" class="main-detail flex flex-direction align-center">
+
+    <div v-if="!loaded" class="center-text flex justify-center align-center">
+      <span>正在加载</span>
+    </div>
+    <div v-else-if="!exist" class="center-text flex justify-center align-center">
+      <span>暂未收录</span>
+    </div>
+    <div v-else class="main-detail flex flex-direction align-center">
       <span class="name animate__animated animate__backInDown"> {{ name }}</span>
       <span class="subtitle animate__animated animate__fadeInLeft">诚邀您参加我们的婚礼</span>
       <div class="hori-line flex align-center">
@@ -19,31 +26,34 @@
 
       <button class="nav-btn animate__animated animate__fadeInUp" @click="handleAlbum">我们的照片 >>></button>
     </div>
-    <div v-else class="not-found flex justify-center align-center">
-      <span>暂未收录</span>
-    </div>
   </div>
 </template>
 
 <script>
-import linq from 'linq'
-
 export default {
+  data() {
+    return {
+      loaded: false,
+      exist: false
+    }
+  },
   computed: {
     name() {
-      const qn = this.$route.query.name
-      console.log('name', qn, this.$store.state.people)
-      if (
-        linq
-          .from(this.$store.state.people)
-          .where(p => p === qn)
-          .count() == 0
-      ) {
-        return null
-      }
-
-      return qn
+      return this.$route.query.name
     }
+  },
+  async mounted() {
+    const res = await this.$post('people', 'exist', {
+      name: this.$route.query.name
+    })
+    if (res.isErr()) {
+      this.loaded = true
+      this.exist = false
+      return
+    }
+
+    this.exist = res.data
+    this.loaded = true
   },
   methods: {
     handleAlbum() {
@@ -134,7 +144,7 @@ export default {
     }
   }
 
-  .not-found {
+  .center-text {
     font-weight: 300;
     font-size: 100px;
     letter-spacing: 100px;

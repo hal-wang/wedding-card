@@ -61,9 +61,6 @@ export default {
   computed: {
     name() {
       return this.$route.query.name
-    },
-    people() {
-      return this.$store.state.people
     }
   },
   created() {
@@ -89,8 +86,6 @@ export default {
       this.countDown = `${day} 天 ${hour} 时 ${minute} 分 ${second} 秒`
     },
     handleMore() {
-      if (!this.people) return
-
       this.$router.push({
         name: 'Detail',
         query: {

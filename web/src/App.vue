@@ -36,12 +36,6 @@ export default {
         return `${top}px 0`
       }
     }
-  },
-  async created() {
-    const res = await this.$post('people', 'get')
-    if (res.isErr()) return
-
-    this.$store.dispatch('setPeople', res.data)
   }
 }
 </script>
