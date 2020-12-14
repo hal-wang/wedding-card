@@ -21,7 +21,7 @@
 3. 管理页
 4. 相册页
 
-Web 托管于 `Cloudbase 云托管`
+Web 托管于 `Cloudbase 静态网站`
 
 ## Api
 
@@ -32,7 +32,7 @@ Web 托管于 `Cloudbase 云托管`
 
 API 托管于 `Cloudbase 云函数`
 
-使用 [cloudbase-access](https://github.com/hbrwang/cloudbase-access) 框架
+使用 [cloudbase-access](https://github.com/hal-wang/cloudbase-access) 框架
 
 ## 数据库
 
