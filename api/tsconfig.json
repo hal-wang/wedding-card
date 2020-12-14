@@ -2,9 +2,9 @@
   "compilerOptions": {
     "module": "commonjs",
     "declaration": true,
-    "outDir": ".",
+    "outDir": "./dist",
     "target": "ES2020",
     "strict": true
   },
-  "exclude": ["controllers", "models", "lib", "index.d.ts", "test"]
+  "exclude": ["test", "dist", "../functions"]
 }

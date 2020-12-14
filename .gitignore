@@ -1,3 +1,6 @@
 node_modules
+/functions
+dist
 
 package-lock.json
+yarn.lock
