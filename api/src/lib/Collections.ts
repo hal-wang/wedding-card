@@ -3,7 +3,8 @@ import { CollectionReference } from "@cloudbase/database";
 
 export default class Collections {
   private static getCollection(collection: string): CollectionReference {
-    return AppInstance.Db.collection(collection);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (AppInstance.Db as any).collection(collection);
   }
 
   static get people(): CollectionReference {

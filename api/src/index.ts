@@ -1,4 +1,4 @@
-import { HttpResult, Router } from "@hbrwang/cloudbase-access";
+import { HttpResult, Router } from "@hal-wang/cloudbase-access";
 import Auth from "./lib/Auth";
 
 export const main = async (

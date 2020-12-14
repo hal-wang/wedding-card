@@ -1,4 +1,4 @@
-import { Action, HttpResult } from "@hbrwang/cloudbase-access";
+import { Action, HttpResult } from "@hal-wang/cloudbase-access";
 import Collections from "../../lib/Collections";
 
 export default class extends Action {

@@ -1,4 +1,4 @@
-import { Authority, HttpResult } from "@hbrwang/cloudbase-access";
+import { Authority, HttpResult } from "@hal-wang/cloudbase-access";
 import DbHelper from "./DbHelper";
 import Collections from "../lib/Collections";
 

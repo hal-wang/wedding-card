@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "bash build.sh api",
+    "deploy": "bash deploy.sh api",
     "test": "jest",
     "eslint": "eslint src --ext .ts"
   },
