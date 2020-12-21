@@ -2,11 +2,11 @@
 
 本人结婚时用的网络喜帖
 
-线上地址： <https://wedding.hubery.wang>
+线上地址： <https://wedding.hal.wang>
 
 网页地址为 `/admin` 则进入管理页，可以添加邀请人并生成邀请二维码。
 
-生成的二维码内容是个网址如 <https://wedding.hubery.wang/#/?name=汪文豪>
+生成的二维码内容是个网址如 <https://wedding.hal.wang/#/?name=汪文豪>
 
 ## Web
 

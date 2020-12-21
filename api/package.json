@@ -12,7 +12,7 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "author": "hbrwang",
+  "author": "hal-wang",
   "license": "MIT",
   "dependencies": {
     "@cloudbase/node-sdk": "^2.4.0",

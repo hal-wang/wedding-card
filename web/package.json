@@ -7,7 +7,7 @@
     "lint": "vue-cli-service lint",
     "deploy": "vue-cli-service build && tcb login && tcb hosting deploy ./dist/ -e wedding-4gbufc140e845226"
   },
-  "author": "hbrwang",
+  "author": "hal-wang",
   "license": "MIT",
   "dependencies": {
     "animate.css": "^4.1.1",

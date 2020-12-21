@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     qrUrl() {
-      return `https://wedding.hubery.wang/#/?name=${this.name}`
+      return `https://wedding.hal.wang/#/?name=${this.name}`
         .replace(/\=/g, '%3D')
         .replace(/\+/g, '%2B')
         .replace(/[\s]/g, '%2F')
