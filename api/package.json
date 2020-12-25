@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "@cloudbase/node-sdk": "^2.4.0",
-    "@hal-wang/cloudbase-access": "^0.7.1",
+    "@hal-wang/cloudbase-access": "^0.8.2",
     "axios": "^0.21.0",
     "cos-nodejs-sdk-v5": "^2.8.3",
     "linq": "^3.2.3"

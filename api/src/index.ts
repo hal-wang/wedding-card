@@ -2,13 +2,19 @@ import { HttpResult, Router } from "@hal-wang/cloudbase-access";
 import Auth from "./lib/Auth";
 
 export const main = async (
-  event: Record<string, unknown>
+  event: Record<string, unknown>,
+  context: Record<string, unknown>
 ): Promise<Record<string, unknown>> => {
   console.log("event", event);
   setHeaders();
 
-  const router = new Router(event, new Auth());
-  return (await router.do()).result;
+  const router = new Router(event, context, new Auth());
+  try {
+    return (await router.do()).result;
+  } catch (err) {
+    console.log("err", err);
+    return HttpResult.errRequest(err.message).result;
+  }
 };
 
 function setHeaders(): void {

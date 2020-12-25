@@ -1,16 +1,24 @@
-import { Authority, HttpResult } from "@hal-wang/cloudbase-access";
+import {
+  Authority,
+  HttpResult,
+  MiddlewareResult,
+} from "@hal-wang/cloudbase-access";
 import DbHelper from "./DbHelper";
 import Collections from "../lib/Collections";
 
 export default class Auth extends Authority {
-  async do(): Promise<HttpResult | null> {
-    if (!this.roles || !this.roles.length) return null;
-
-    if (this.roles.includes("admin") && !(await this.adminAuth())) {
-      return HttpResult.forbidden("不是管理员");
+  async do(): Promise<MiddlewareResult> {
+    if (!this.roles || !this.roles.length) {
+      return MiddlewareResult.getSuccessResult();
     }
 
-    return null;
+    if (this.roles.includes("admin") && !(await this.adminAuth())) {
+      return MiddlewareResult.getFailedResult(
+        HttpResult.forbidden("不是管理员")
+      );
+    }
+
+    return MiddlewareResult.getSuccessResult();
   }
 
   private async adminAuth(): Promise<boolean> {
