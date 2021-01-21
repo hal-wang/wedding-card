@@ -11,6 +11,8 @@ export default class extends Action {
         _id: name,
       })
       .count();
-    return this.ok(countRes.total > 0);
+    return this.ok({
+      exist: countRes.total > 0,
+    });
   }
 }

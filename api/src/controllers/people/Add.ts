@@ -8,7 +8,7 @@ export default class extends Action {
 
   async do(): Promise<HttpResult> {
     const name = this.requestParams.data.name as string;
-    if (!name) return this.badRequest("请填写人名");
+    if (!name) return this.badRequestMsg({ message: "请填写人名" });
 
     const countRes = await Collections.people
       .where({

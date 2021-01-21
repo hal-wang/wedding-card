@@ -1,9 +1,9 @@
 import {
   Authority,
+  DbHelper,
   HttpResult,
   MiddlewareResult,
 } from "@hal-wang/cloudbase-access";
-import DbHelper from "./DbHelper";
 import Collections from "../lib/Collections";
 
 export default class Auth extends Authority {
@@ -14,7 +14,7 @@ export default class Auth extends Authority {
 
     if (this.roles.includes("admin") && !(await this.adminAuth())) {
       return MiddlewareResult.getFailedResult(
-        HttpResult.forbidden("不是管理员")
+        HttpResult.forbiddenMsg({ message: "不是管理员" })
       );
     }
 
@@ -24,7 +24,7 @@ export default class Auth extends Authority {
   private async adminAuth(): Promise<boolean> {
     const { admin } = this.requestParams.headers;
 
-    const adminKey = (await DbHelper.getField(
+    const adminKey = (await DbHelper.getScalar(
       Collections.config,
       "admin",
       "key"
