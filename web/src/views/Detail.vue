@@ -52,13 +52,13 @@ export default {
     const res = await this.$post('people', 'exist', {
       name: this.name
     })
-    if (res.isErr()) {
+    if (!res.success) {
       this.loaded = true
       this.exist = false
       return
     }
 
-    this.exist = res.data
+    this.exist = res.data.exist
     this.loaded = true
   },
   methods: {

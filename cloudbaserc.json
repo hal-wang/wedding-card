@@ -4,7 +4,7 @@
   "functionRoot": "./functions",
   "functions": [
     {
-      "name": "main",
+      "name": "api",
       "timeout": 5,
       "envVariables": {},
       "runtime": "Nodejs10.15",

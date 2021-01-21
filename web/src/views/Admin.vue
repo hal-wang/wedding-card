@@ -50,7 +50,7 @@ export default {
           admin: this.password
         }
       )
-      if (res.isErr()) return
+      if (!res.success) return
 
       window.open(this.qrApiUrl, '_blank')
       this.name = ''

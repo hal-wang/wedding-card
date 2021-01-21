@@ -1,19 +1,20 @@
 import { HttpResult, Router } from "@hal-wang/cloudbase-access";
+import { AppInstanceMiddleware } from "./lib/AppInstanceMiddleware";
 import Auth from "./lib/Auth";
 
 export const main = async (
   event: Record<string, unknown>,
   context: Record<string, unknown>
-): Promise<Record<string, unknown>> => {
-  console.log("event", event);
+): Promise<unknown> => {
+  console.log("env", event, context);
   setHeaders();
 
   const router = new Router(event, context, new Auth());
+  router.configure(new AppInstanceMiddleware());
   try {
     return (await router.do()).result;
   } catch (err) {
-    console.log("err", err);
-    return HttpResult.errRequest(err.message).result;
+    return HttpResult.errRequestMsg({ message: err.message }).result;
   }
 };
 

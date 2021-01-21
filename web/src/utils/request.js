@@ -6,22 +6,41 @@ const service = axios.create({
   timeout: 20000 // request timeout
 })
 
-export default async function post(controller, action, data, headers) {
-  const res = await service({
-    url: `${controller}/${action}`,
-    method: 'POST',
-    data: data || {},
-    headers: headers
-  }).catch(err => err.response)
-  console.log('b request', res)
-  res.isErr = function () {
-    if (!res.status || res.status < 200 || res.status >= 300) {
-      alert(`错误： ${res.data || res}`)
-      return true
-    } else {
-      return false
-    }
-  }
+function base(controller, action, data, headers) {
+  return new Promise(resolve => {
+    service({
+      url: `${controller}/${action}`,
+      method: 'POST',
+      data: data || {},
+      headers: headers
+    })
+      .then(res => {
+        resolve(res)
+      })
+      .catch(err => {
+        resolve(err.response)
+      })
+  })
+}
 
+function getErrMsg(res) {
+  console.log('res')
+  if (!res.data) return 'unknow error'
+  if (typeof res.data === 'string') return res.data
+
+  if (res.data.message && typeof res.data.message === 'string') {
+    return res.data.message
+  }
+  return 'unknow error'
+}
+
+export default async function post(controller, action, data, headers, showErr = true) {
+  const res = await base(controller, action, data, headers)
+  if (!res.status || res.status < 200 || res.status >= 300) {
+    if (showErr) alert(`错误： ${getErrMsg(res)}`)
+    res.success = false
+  } else {
+    res.success = true
+  }
   return res
 }
