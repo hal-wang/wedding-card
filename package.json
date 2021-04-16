@@ -1,0 +1,27 @@
+{
+  "name": "wedding-card",
+  "description": "结婚喜帖",
+  "homepage": "https://github.com/hal-wang/wedding-card",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hal-wang/wedding-card"
+  },
+  "scripts": {
+    "deploy": "tcb login && tcb framework deploy"
+  },
+  "keywords": [
+    "cloudbase-access",
+    "cloudbase",
+    "restful-api",
+    "serverless",
+    "nodejs",
+    "typescript",
+    "wedding"
+  ],
+  "bugs": {
+    "url": "https://github.com/hal-wang/wedding-card/issues",
+    "email": "support@hal.wang"
+  },
+  "author": "hal-wang",
+  "license": "MIT"
+}

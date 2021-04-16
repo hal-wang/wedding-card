@@ -1,11 +1,10 @@
 {
   "name": "wedding-card",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "deploy": "vue-cli-service build && tcb login && tcb hosting deploy ./dist/ -e wedding-4gbufc140e845226"
+    "lint": "vue-cli-service lint"
   },
   "author": "hal-wang",
   "license": "MIT",

@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { baseApiUrl } from '@/utils'
 
+const tcbEnv = window._tcbEnv
 const service = axios.create({
-  baseURL: baseApiUrl, // url = post url + request url
+  baseURL: `https://${tcbEnv.TCB_SERVICE_DOMAIN}/${tcbEnv.API_NAME}`, // url = post url + request url
   timeout: 20000 // request timeout
 })
 

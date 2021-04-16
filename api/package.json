@@ -1,11 +1,11 @@
 {
   "name": "wedding-card-cloudbase",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "bash build.sh api",
-    "deploy": "bash deploy.sh api",
+    "build": "bash build.sh v1",
+    "deploy": "bash deploy.sh v1",
     "test": "jest",
     "eslint": "eslint src --ext .ts"
   },

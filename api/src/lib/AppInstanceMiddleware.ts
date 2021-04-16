@@ -1,4 +1,3 @@
-import Global from "./Global";
 import {
   AppInstance,
   Middleware,
@@ -13,7 +12,7 @@ export class AppInstanceMiddleware extends Middleware {
 
   async do(): Promise<MiddlewareResult> {
     AppInstance.init({
-      env: Global.cloudbase.env,
+      env: process.env.TCB_ENV,
     });
 
     return MiddlewareResult.getSuccessResult();

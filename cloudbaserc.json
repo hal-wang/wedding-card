@@ -1,23 +1,57 @@
 {
-  "envId": "wedding-4gbufc140e845226",
+  "version": "2.0",
+  "envId": "{{env.ENV_ID}}",
   "$schema": "https://framework-1258016615.tcloudbaseapp.com/schema/latest.json",
   "functionRoot": "./functions",
-  "functions": [
-    {
-      "name": "api",
-      "timeout": 5,
-      "envVariables": {},
-      "runtime": "Nodejs10.15",
-      "memorySize": 128,
-      "handler": "index.main"
-    }
-  ],
   "framework": {
-    "name": "node-starter",
+    "name": "wedding-card",
+    "hooks": {
+      "preDeploy": {
+        "type": "execCommand",
+        "commands": [
+          "npm install -g typescript --prefer-offline --no-audit --progress=false",
+          "cd api && npm install --prefer-offline --no-audit --progress=false && npm run build"
+        ]
+      }
+    },
     "plugins": {
       "function": {
         "use": "@cloudbase/framework-plugin-function",
-        "inputs": {}
+        "inputs": {
+          "functionRootPath": "functions",
+          "functions": [
+            {
+              "name": "{{env.API_NAME}}"
+            }
+          ],
+          "servicePaths": {
+            "{{env.API_NAME}}": "/{{env.API_NAME}}"
+          }
+        }
+      },
+      "web": {
+        "use": "@cloudbase/framework-plugin-website",
+        "inputs": {
+          "installCommand": "cd web && npm install --prefer-offline --no-audit --progress=false",
+          "buildCommand": "cd web && npm run build",
+          "outputPath": "web/dist",
+          "envVariables": {
+            "API_NAME": "{{env.API_NAME}}"
+          }
+        }
+      },
+      "db": {
+        "use": "@cloudbase/framework-plugin-database",
+        "inputs": {
+          "collections": [
+            {
+              "collectionName": "config"
+            },
+            {
+              "collectionName": "people"
+            }
+          ]
+        }
       }
     }
   }
