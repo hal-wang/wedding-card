@@ -7,7 +7,7 @@ export default class extends Action {
   }
 
   async do(): Promise<HttpResult> {
-    const name = decodeURIComponent(this.requestParams.data.name as string);
+    const name = this.requestParams.data.name;
     if (!name) return this.badRequestMsg({ message: "请填写人名" });
 
     const countRes = await Collections.people

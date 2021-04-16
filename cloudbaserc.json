@@ -48,9 +48,6 @@
         "inputs": {
           "collections": [
             {
-              "collectionName": "config"
-            },
-            {
               "collectionName": "people"
             }
           ]

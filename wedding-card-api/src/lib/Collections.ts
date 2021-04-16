@@ -11,7 +11,4 @@ export default class Collections {
   static get people(): Database.CollectionReference {
     return Collections.getCollection("people");
   }
-  static get config(): Database.CollectionReference {
-    return Collections.getCollection("config");
-  }
 }

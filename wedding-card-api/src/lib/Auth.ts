@@ -1,10 +1,9 @@
 import {
   Authority,
-  DbHelper,
   HttpResult,
+  HttpResultError,
   MiddlewareResult,
 } from "@hal-wang/cloudbase-access";
-import Collections from "../lib/Collections";
 
 export default class Auth extends Authority {
   async do(): Promise<MiddlewareResult> {
@@ -22,14 +21,14 @@ export default class Auth extends Authority {
   }
 
   private async adminAuth(): Promise<boolean> {
+    if (!process.env.ADMIN) {
+      throw new HttpResultError(
+        HttpResult.forbiddenMsg({
+          message: '请添加环境变量"ADMIN", 值为管理员密码',
+        })
+      );
+    }
     const { admin } = this.requestParams.headers;
-
-    const adminKey = (await DbHelper.getScalar(
-      Collections.config,
-      "admin",
-      "key"
-    )) as string;
-
-    return adminKey == admin;
+    return admin == process.env.ADMIN;
   }
 }
