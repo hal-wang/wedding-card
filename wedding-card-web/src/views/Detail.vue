@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import request from '../utils/request'
+
 export default {
   data() {
     return {
@@ -49,17 +51,12 @@ export default {
       return
     }
 
-    const res = await this.$post('people', 'exist', {
-      name: this.name
-    })
-    if (!res.success) {
+    try {
+      const res = await request.get(`people/${encodeURIComponent(this.name)}`)
+      this.exist = res.data.exist
+    } finally {
       this.loaded = true
-      this.exist = false
-      return
     }
-
-    this.exist = res.data.exist
-    this.loaded = true
   },
   methods: {
     handleAlbum() {

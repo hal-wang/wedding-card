@@ -19,6 +19,7 @@ export const main = async (
 };
 
 function setHeaders(): void {
-  const config = <Record<string, unknown>>require("./package.json");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const config = <any>require("./package.json");
   HttpResult.baseHeaders.version = config.version;
 }

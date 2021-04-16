@@ -2,45 +2,46 @@ import axios from 'axios'
 
 const tcbEnv = window._tcbEnv
 const service = axios.create({
-  baseURL: `https://${tcbEnv.TCB_SERVICE_DOMAIN}/${tcbEnv.API_NAME}`, // url = post url + request url
-  timeout: 20000 // request timeout
+  baseURL: `https://${tcbEnv.TCB_SERVICE_DOMAIN}/${tcbEnv.API_NAME}`,
+  timeout: 20000
 })
 
-function base(controller, action, data, headers) {
-  return new Promise(resolve => {
-    service({
-      url: `${controller}/${action}`,
-      method: 'POST',
-      data: data || {},
-      headers: headers
-    })
-      .then(res => {
-        resolve(res)
-      })
-      .catch(err => {
-        resolve(err.response)
-      })
-  })
-}
-
-function getErrMsg(res) {
-  console.log('res')
-  if (!res.data) return 'unknow error'
-  if (typeof res.data === 'string') return res.data
-
-  if (res.data.message && typeof res.data.message === 'string') {
-    return res.data.message
+service.interceptors.request.use(
+  async config => {
+    config.headers['content-type'] = 'application/json'
+    config.headers['short-url-origin'] = `${window.location.protocol}//${window.location.host}`
+    config.validateStatus = num => num >= 200 && num < 300
+    return config
+  },
+  resErr => {
+    return Promise.reject('request error')
   }
-  return 'unknow error'
-}
+)
 
-export default async function post(controller, action, data, headers, showErr = true) {
-  const res = await base(controller, action, data, headers)
-  if (!res.status || res.status < 200 || res.status >= 300) {
-    if (showErr) alert(`错误： ${getErrMsg(res)}`)
-    res.success = false
+function getErrText(error) {
+  if (error.data && error.data.message) {
+    return error.data.message
+  } else if (error.data && typeof error.data === 'string') {
+    return error.data
   } else {
-    res.success = true
+    return error.statusText
   }
-  return res
 }
+
+service.interceptors.response.use(
+  res => {
+    return res
+  },
+  error => {
+    const res = error.response
+    console.log('err', error.message, res)
+    if (!res) {
+      alert('request error')
+    } else {
+      alert(getErrText(res))
+    }
+    return Promise.reject(res)
+  }
+)
+
+export default service

@@ -15,8 +15,8 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-import post from '@/utils/request'
-Vue.prototype.$post = post
+import request from '@/utils/request'
+Vue.prototype.$request = request
 
 new Vue({
   el: '#app',

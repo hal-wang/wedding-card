@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import request from '../utils/request'
+
 export default {
   data() {
     return {
@@ -40,17 +42,17 @@ export default {
         return
       }
 
-      const res = await this.$post(
-        'people',
-        'add',
+      await request.post(
+        `people`,
         {
           name: this.name
         },
         {
-          admin: this.password
+          headers: {
+            admin: this.password
+          }
         }
       )
-      if (!res.success) return
 
       window.open(this.qrApiUrl, '_blank')
       this.name = ''

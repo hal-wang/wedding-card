@@ -1,10 +1,14 @@
 import { Action, HttpResult } from "@hal-wang/cloudbase-access";
-import Collections from "../../lib/Collections";
+import Collections from "../../../lib/Collections";
 
 export default class extends Action {
   async do(): Promise<HttpResult> {
-    const name = this.requestParams.data.name as string;
-    if (!name) return this.ok(false);
+    const name = this.requestParams.query.name;
+    if (!name) {
+      return this.ok({
+        exist: false,
+      });
+    }
 
     const countRes = await Collections.people
       .where({
@@ -12,7 +16,7 @@ export default class extends Action {
       })
       .count();
     return this.ok({
-      exist: countRes.total > 0,
+      exist: !!countRes.total,
     });
   }
 }

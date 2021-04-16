@@ -10,7 +10,7 @@
         "type": "execCommand",
         "commands": [
           "npm install -g typescript --prefer-offline --no-audit --progress=false",
-          "cd api && npm install --prefer-offline --no-audit --progress=false && npm run build"
+          "cd wedding-card-api && npm install --prefer-offline --no-audit --progress=false && npm run build"
         ]
       }
     },
@@ -21,7 +21,10 @@
           "functionRootPath": "functions",
           "functions": [
             {
-              "name": "{{env.API_NAME}}"
+              "name": "{{env.API_NAME}}",
+              "envVariables": {
+                "ADMIN": "{{env.ADMIN}}"
+              }
             }
           ],
           "servicePaths": {
@@ -32,9 +35,9 @@
       "web": {
         "use": "@cloudbase/framework-plugin-website",
         "inputs": {
-          "installCommand": "cd web && npm install --prefer-offline --no-audit --progress=false",
-          "buildCommand": "cd web && npm run build",
-          "outputPath": "web/dist",
+          "installCommand": "cd wedding-card-web && npm install --prefer-offline --no-audit --progress=false",
+          "buildCommand": "cd wedding-card-web && npm run build",
+          "outputPath": "wedding-card-web/dist",
           "envVariables": {
             "API_NAME": "{{env.API_NAME}}"
           }

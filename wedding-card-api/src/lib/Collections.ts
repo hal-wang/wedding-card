@@ -1,16 +1,17 @@
-import { CollectionReference } from "@cloudbase/database";
+import { Database } from "@cloudbase/node-sdk";
 import { AppInstance } from "@hal-wang/cloudbase-access";
 
 export default class Collections {
-  private static getCollection(collection: string): CollectionReference {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (AppInstance.instance.db as any).collection(collection);
+  private static getCollection(
+    collection: string
+  ): Database.CollectionReference {
+    return AppInstance.instance.db.collection(collection);
   }
 
-  static get people(): CollectionReference {
+  static get people(): Database.CollectionReference {
     return Collections.getCollection("people");
   }
-  static get config(): CollectionReference {
+  static get config(): Database.CollectionReference {
     return Collections.getCollection("config");
   }
 }
