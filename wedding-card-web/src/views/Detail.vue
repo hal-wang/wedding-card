@@ -18,11 +18,11 @@
         </div>
       </div>
       <span class="title animate__animated animate__fadeInLeft">时间</span>
-      <span class="content animate__animated animate__fadeInLeft">2020年10月04日 中午12:00</span>
+      <span class="content animate__animated animate__fadeInLeft">{{ date }}</span>
       <span class="title animate__animated animate__fadeInLeft">详细地址</span>
-      <span class="content animate__animated animate__fadeInLeft">安徽省阜阳市颍上县江店孜镇杨庄村汪庄</span>
+      <span class="content animate__animated animate__fadeInLeft">{{ addr }}</span>
       <span class="title animate__animated animate__fadeInLeft">电话/微信</span>
-      <span class="content animate__animated animate__fadeInLeft">18756858797</span>
+      <span class="content animate__animated animate__fadeInLeft">{{ phone }}</span>
 
       <button class="nav-btn animate__animated animate__fadeInUp" @click="handleAlbum">我们的照片 >>></button>
     </div>
@@ -42,6 +42,15 @@ export default {
   computed: {
     name() {
       return this.$route.query.name
+    },
+    date() {
+      return window._tcbEnv.DATE
+    },
+    addr() {
+      return window._tcbEnv.ADDR
+    },
+    phone() {
+      return window._tcbEnv.PHONE
     }
   },
   async mounted() {

@@ -6,11 +6,11 @@
     <div class="flex-sub flex flex-direction align-center">
       <div class="animate__animated animate__tada animate__repeat-2" style="font-size: 80px; margin-top: 60px; letter-spacing: 40px">我们结婚啦</div>
       <div class="flex align-center we">
-        <div class="flex-sub">新郎：汪文豪</div>
+        <div class="flex-sub">新郎：{{ groom }}</div>
         <div style="margin: 0 60px; font-size: 100px; color: red" class="animate__animated animate__heartBeat animate__infinite">
           <svg-icon icon-class="heart" />
         </div>
-        <div class="flex-sub">新娘：谢娜娜</div>
+        <div class="flex-sub">新娘：{{ bride }}</div>
       </div>
       <div class="name-line flex align-center justify-center">
         <div class="line" />
@@ -27,7 +27,7 @@
         />
       </div>
       <div class="flex remark align-center">
-        <div class="flex-sub" style="text-align: right">2020.10.04</div>
+        <div class="flex-sub" style="text-align: right">{{ day }}</div>
         <span style="font-weight: bold; margin: 0 10px"> |</span>
         <div class="flex-sub" style="letter-spacing: 0">
           {{ countDown }}
@@ -61,6 +61,22 @@ export default {
   computed: {
     name() {
       return this.$route.query.name
+    },
+    groom() {
+      return window._tcbEnv.GROOM
+    },
+    bride() {
+      return window._tcbEnv.BRIDE
+    },
+    date() {
+      return window._tcbEnv.DATE
+    },
+    day() {
+      const date = new Date(Date.parse(this.date))
+      const year = date.getFullYear
+      const month = date.getMonth
+      const day = date.getDate
+      return `${year}-${month}-${day}`
     }
   },
   created() {
@@ -70,7 +86,7 @@ export default {
   methods: {
     setCountDown() {
       const now = new Date().getTime()
-      const date = new Date(Date.parse('2020/10/04 12:00:00')).getTime()
+      const date = new Date(Date.parse(this.date)).getTime()
       const totalSecond = (date - now) / 1000
 
       if (totalSecond < 0) {

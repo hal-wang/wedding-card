@@ -39,7 +39,12 @@
           "buildCommand": "cd wedding-card-web && npm run build",
           "outputPath": "wedding-card-web/dist",
           "envVariables": {
-            "API_NAME": "{{env.API_NAME}}"
+            "API_NAME": "{{env.API_NAME}}",
+            "GROOM": "{{env.GROOM}}",
+            "BRIDE": "{{env.BRIDE}}",
+            "DATE": "{{env.DATE}}",
+            "ADDR": "{{env.ADDR}}",
+            "PHONE": "{{env.PHONE}}"
           }
         }
       },
