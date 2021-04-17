@@ -4,17 +4,17 @@
       <span>— 相册 —</span>
     </div>
 
-    <img v-for="(i, index) in 13" :key="index" :src="`./album/${index + 1}.jpg`" />
+    <img
+      v-for="(i, index) in 13"
+      :key="index"
+      :src="`./album/${index + 1}.jpg`"
+    />
 
     <div class="text flex justify-center">
       <span>— 更多请到访 —</span>
     </div>
   </div>
 </template>
-
-<script>
-export default {}
-</script>
 
 <style lang="scss" scoped>
 .album-container {

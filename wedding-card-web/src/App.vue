@@ -1,5 +1,9 @@
 <template>
-  <div id="app" class="flex" :style="{ transform: `scale(${scale},${scale})`, margin: margin }">
+  <div
+    id="app"
+    class="flex"
+    :style="{ transform: `scale(${scale},${scale})`, margin: margin }"
+  >
     <audio class="back-music" :autoplay="true">
       <source :src="`./王妃.mp3`" />
     </audio>
@@ -9,32 +13,34 @@
   </div>
 </template>
 
-<script>
-export default {
-  computed: {
-    isWidthLarger() {
-      const innerHeight = window.innerHeight
-      const innerWidth = window.innerWidth
-      const wantWidth = (innerHeight * 1080) / 1920
-      return wantWidth < innerWidth
-    },
-    scale() {
-      if (this.isWidthLarger) {
-        return window.innerHeight / 1920
-      } else {
-        return window.innerWidth / 1080
-      }
-    },
-    margin() {
-      if (this.isWidthLarger) {
-        const width = (innerHeight * 1080) / 1920
-        const left = window.innerWidth / 2 - width / 2
-        return `0 ${left}px`
-      } else {
-        const height = (innerWidth * 1920) / 1080
-        const top = window.innerHeight / 2 - height / 2
-        return `${top}px 0`
-      }
+<script lang="ts">
+import { Options, Vue } from "vue-class-component";
+
+@Options({})
+export default class extends Vue {
+  get isWidthLarger(): boolean {
+    const innerHeight = window.innerHeight;
+    const innerWidth = window.innerWidth;
+    const wantWidth = (innerHeight * 1080) / 1920;
+    return wantWidth < innerWidth;
+  }
+  get scale(): number {
+    if (this.isWidthLarger) {
+      return window.innerHeight / 1920;
+    } else {
+      return window.innerWidth / 1080;
+    }
+  }
+
+  get margin(): string {
+    if (this.isWidthLarger) {
+      const width = (innerHeight * 1080) / 1920;
+      const left = window.innerWidth / 2 - width / 2;
+      return `0 ${left}px`;
+    } else {
+      const height = (innerWidth * 1920) / 1080;
+      const top = window.innerHeight / 2 - height / 2;
+      return `${top}px 0`;
     }
   }
 }

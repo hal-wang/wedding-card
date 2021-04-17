@@ -1,62 +1,70 @@
 <template>
   <div class="admin-container flex flex-direction align-center justify-center">
     <img class="background-img" src="@/assets/background.jpg" alt="" />
-    <input v-model="name" class="name" type="text" placeholder="填写人名" autocomplete="new-password" />
-    <input v-model="password" class="password" type="password" placeholder="管理员密码" autocomplete="new-password" />
+    <input
+      v-model="name"
+      class="name"
+      type="text"
+      placeholder="填写人名"
+      autocomplete="new-password"
+    />
+    <input
+      v-model="password"
+      class="password"
+      type="password"
+      placeholder="管理员密码"
+      autocomplete="new-password"
+    />
     <button class="btn" @click="handleCreate">生成</button>
   </div>
 </template>
 
-<script>
-import request from '../utils/request'
+<script lang="ts">
+import request from "@/utils/request";
+import { Options, Vue } from "vue-class-component";
 
-export default {
-  data() {
-    return {
-      name: '',
-      password: ''
-    }
-  },
-  computed: {
-    qrUrl() {
-      return `${window.location.protocol}//${window.location.host}/#/?name=${this.name}`
-        .replace(/\=/g, '%3D')
-        .replace(/\+/g, '%2B')
-        .replace(/[\s]/g, '%2F')
-        .replace(/\?/g, '%3F')
-        .replace(/\#/g, '%23')
-        .replace(/\&/g, '%26')
-    },
-    qrApiUrl() {
-      return `https://cli.im/api/qrcode/code?text=${this.qrUrl}&mhid=shOUWQDqzJohMHYvKd1dMK0`
-    }
-  },
-  methods: {
-    async handleCreate() {
-      if (!this.name) {
-        alert('请填写人名')
-        return
-      }
-      if (!this.password) {
-        alert('请填写密码')
-        return
-      }
+Options({});
+export default class extends Vue {
+  name = "";
+  password = "";
 
-      await request.post(
-        `people`,
-        {
-          name: this.name
+  get qrUrl(): string {
+    return `${window.location.protocol}//${window.location.host}/#/?name=${this.name}`
+      .replace(/=/g, "%3D")
+      .replace(/\+/g, "%2B")
+      .replace(/[\s]/g, "%2F")
+      .replace(/\?/g, "%3F")
+      .replace(/#/g, "%23")
+      .replace(/&/g, "%26");
+  }
+  get qrApiUrl(): string {
+    return `https://cli.im/api/qrcode/code?text=${this.qrUrl}&mhid=shOUWQDqzJohMHYvKd1dMK0`;
+  }
+
+  async handleCreate(): Promise<void> {
+    if (!this.name) {
+      alert("请填写人名");
+      return;
+    }
+    if (!this.password) {
+      alert("请填写密码");
+      return;
+    }
+
+    await request.post(
+      `people`,
+      {
+        name: this.name,
+      },
+      {
+        headers: {
+          admin: this.password,
         },
-        {
-          headers: {
-            admin: this.password
-          }
-        }
-      )
+      }
+    );
 
-      window.open(this.qrApiUrl, '_blank')
-      this.name = ''
-    }
+    window.open(this.qrApiUrl, "_blank");
+    this.name = "";
   }
 }
 </script>

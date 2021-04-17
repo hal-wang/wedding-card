@@ -5,74 +5,97 @@
     <div v-if="!loaded" class="center-text flex justify-center align-center">
       <span>正在加载</span>
     </div>
-    <div v-else-if="!exist" class="center-text flex justify-center align-center">
+    <div
+      v-else-if="!exist"
+      class="center-text flex justify-center align-center"
+    >
       <span>暂未收录</span>
     </div>
     <div v-else class="main-detail flex flex-direction align-center">
-      <span class="name animate__animated animate__backInDown"> {{ name }}</span>
-      <span class="subtitle animate__animated animate__fadeInLeft">诚邀您参加我们的婚礼</span>
+      <span class="name animate__animated animate__backInDown">
+        {{ name }}</span
+      >
+      <span class="subtitle animate__animated animate__fadeInLeft"
+        >诚邀您参加我们的婚礼</span
+      >
       <div class="hori-line flex align-center">
-        <div class="line animate__animated animate__fadeInLeft animate__delay-2s"></div>
-        <div class="line-heart animate__animated animate__shakeX animate__infinite animate__slower">
+        <div
+          class="line animate__animated animate__fadeInLeft animate__delay-2s"
+        ></div>
+        <div
+          class="line-heart animate__animated animate__shakeX animate__infinite animate__slower"
+        >
           <svg-icon icon-class="heart" />
         </div>
       </div>
       <span class="title animate__animated animate__fadeInLeft">时间</span>
-      <span class="content animate__animated animate__fadeInLeft">{{ date }}</span>
+      <span class="content animate__animated animate__fadeInLeft">{{
+        date
+      }}</span>
       <span class="title animate__animated animate__fadeInLeft">详细地址</span>
-      <span class="content animate__animated animate__fadeInLeft">{{ addr }}</span>
+      <span class="content animate__animated animate__fadeInLeft">{{
+        addr
+      }}</span>
       <span class="title animate__animated animate__fadeInLeft">电话/微信</span>
-      <span class="content animate__animated animate__fadeInLeft">{{ phone }}</span>
+      <span class="content animate__animated animate__fadeInLeft">{{
+        phone
+      }}</span>
 
-      <button class="nav-btn animate__animated animate__fadeInUp" @click="handleAlbum">我们的照片 >>></button>
+      <button
+        class="nav-btn animate__animated animate__fadeInUp"
+        @click="handleAlbum"
+      >
+        我们的照片 >>>
+      </button>
     </div>
   </div>
 </template>
 
-<script>
-import request from '../utils/request'
+<script lang="ts">
+import request from "@/utils/request";
+import { Options, Vue } from "vue-class-component";
 
-export default {
-  data() {
-    return {
-      loaded: false,
-      exist: false
-    }
-  },
-  computed: {
-    name() {
-      return this.$route.query.name
-    },
-    date() {
-      return window._tcbEnv.DATE
-    },
-    addr() {
-      return window._tcbEnv.ADDR
-    },
-    phone() {
-      return window._tcbEnv.PHONE
-    }
-  },
-  async mounted() {
+Options({});
+export default class extends Vue {
+  loaded = false;
+  exist = false;
+
+  get tcbEnv(): Record<string, string> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (window as any)._tcbEnv;
+  }
+  get name(): string {
+    return this.$route.query.name as string;
+  }
+  get date(): string {
+    return this.tcbEnv.DATE;
+  }
+  get addr(): string {
+    return this.tcbEnv.ADDR;
+  }
+  get phone(): string {
+    return this.tcbEnv.PHONE;
+  }
+
+  async mounted(): Promise<void> {
     if (!this.name) {
-      this.loaded = true
-      this.exist = false
-      return
+      this.loaded = true;
+      this.exist = false;
+      return;
     }
 
     try {
-      const res = await request.get(`people/${encodeURIComponent(this.name)}`)
-      this.exist = res.data.exist
+      const res = await request.get(`people/${encodeURIComponent(this.name)}`);
+      this.exist = res.data.exist;
     } finally {
-      this.loaded = true
+      this.loaded = true;
     }
-  },
-  methods: {
-    handleAlbum() {
-      this.$router.push({
-        name: 'Album'
-      })
-    }
+  }
+
+  handleAlbum(): void {
+    this.$router.push({
+      name: "Album",
+    });
   }
 }
 </script>

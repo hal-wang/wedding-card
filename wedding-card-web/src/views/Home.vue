@@ -1,13 +1,23 @@
 <template>
   <div class="flex flex-direction home-container" style="position: relative">
-    <div class="cover-container animate__animated animate__zoomInUp animate__duration-2s">
+    <div
+      class="cover-container animate__animated animate__zoomInUp animate__duration-2s"
+    >
       <img class="cover" :src="`./cover.jpg`" alt="" />
     </div>
     <div class="flex-sub flex flex-direction align-center">
-      <div class="animate__animated animate__tada animate__repeat-2" style="font-size: 80px; margin-top: 60px; letter-spacing: 40px">我们结婚啦</div>
+      <div
+        class="animate__animated animate__tada animate__repeat-2"
+        style="font-size: 80px; margin-top: 60px; letter-spacing: 40px"
+      >
+        我们结婚啦
+      </div>
       <div class="flex align-center we">
         <div class="flex-sub">新郎：{{ groom }}</div>
-        <div style="margin: 0 60px; font-size: 100px; color: red" class="animate__animated animate__heartBeat animate__infinite">
+        <div
+          style="margin: 0 60px; font-size: 100px; color: red"
+          class="animate__animated animate__heartBeat animate__infinite"
+        >
           <svg-icon icon-class="heart" />
         </div>
         <div class="flex-sub">新娘：{{ bride }}</div>
@@ -19,7 +29,10 @@
           style="position: absolute; font-size: 40px; left: 60px"
           class="animate__animated animate__fadeInRight animate__delay-2s"
         />
-        <svg-icon icon-class="rhombus" style="position: absolute; font-size: 60px" />
+        <svg-icon
+          icon-class="rhombus"
+          style="position: absolute; font-size: 60px"
+        />
         <svg-icon
           icon-class="rhombus"
           style="position: absolute; font-size: 40px; right: 60px"
@@ -39,76 +52,90 @@
       </div>
     </div>
 
-    <div class="cover-text flex flex-direction align-center animate__animated animate__fadeInLeft animate__delay-2s">
+    <div
+      class="cover-text flex flex-direction align-center animate__animated animate__fadeInLeft animate__delay-2s"
+    >
       <span style="font-size: 80px; letter-spacing: 28px">LOVE</span>
       <span>执子之手</span>
       <span>与之偕老</span>
     </div>
 
-    <div class="ver-text animate__animated animate__fadeInRight animate__delay-2s">我们的婚礼，诚邀您见证</div>
+    <div
+      class="ver-text animate__animated animate__fadeInRight animate__delay-2s"
+    >
+      我们的婚礼，诚邀您见证
+    </div>
 
-    <div class="border-line animate__animated animate__rotateIn animate__slow" />
+    <div
+      class="border-line animate__animated animate__rotateIn animate__slow"
+    />
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      countDown: ''
-    }
-  },
-  computed: {
-    name() {
-      return this.$route.query.name
-    },
-    groom() {
-      return window._tcbEnv.GROOM
-    },
-    bride() {
-      return window._tcbEnv.BRIDE
-    },
-    date() {
-      return window._tcbEnv.DATE
-    },
-    day() {
-      const date = new Date(Date.parse(this.date))
-      const year = date.getFullYear
-      const month = date.getMonth
-      const day = date.getDate
-      return `${year}-${month}-${day}`
-    }
-  },
-  created() {
-    this.setCountDown()
-    setInterval(this.setCountDown, 1000)
-  },
-  methods: {
-    setCountDown() {
-      const now = new Date().getTime()
-      const date = new Date(Date.parse(this.date)).getTime()
-      const totalSecond = (date - now) / 1000
+<script lang="ts">
+import { Options, Vue } from "vue-class-component";
+Options({});
+export default class extends Vue {
+  countDown = "";
 
-      if (totalSecond < 0) {
-        this.countDown = `已 相 守 ${parseInt(-totalSecond / 60 / 60 / 24)}/+∞ 天`
-        return
-      }
+  get tcbEnv(): Record<string, string> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (window as any)._tcbEnv;
+  }
+  get name(): string {
+    return this.$route.query.name as string;
+  }
+  get groom(): string {
+    return this.tcbEnv.GROOM;
+  }
+  get bride(): string {
+    return this.tcbEnv.BRIDE;
+  }
+  get date(): string {
+    return this.tcbEnv.DATE;
+  }
+  get day(): string {
+    const date = new Date(Date.parse(this.date));
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const monthStr = month < 10 ? "0" + month : month;
+    const day = date.getDate();
+    const dayStr = day < 10 ? "0" + day : day;
+    return `${year}-${monthStr}-${dayStr}`;
+  }
 
-      const day = parseInt(totalSecond / 60 / 60 / 24)
-      const hour = parseInt((totalSecond / 60 / 60) % 24)
-      const minute = parseInt((totalSecond / 60) % 60)
-      const second = parseInt(totalSecond % 60)
+  created(): void {
+    this.setCountDown();
+    setInterval(this.setCountDown, 1000);
+  }
 
-      this.countDown = `${day} 天 ${hour} 时 ${minute} 分 ${second} 秒`
-    },
-    handleMore() {
-      this.$router.push({
-        name: 'Detail',
-        query: {
-          name: this.name
-        }
-      })
+  setCountDown(): void {
+    const now = new Date().getTime();
+    const date = new Date(Date.parse(this.date)).getTime();
+    const totalSecond = (date - now) / 1000;
+
+    if (totalSecond < 0) {
+      this.countDown = `已 相 守 ${Math.floor(
+        -totalSecond / 60 / 60 / 24
+      )}/+∞ 天`;
+      return;
     }
+
+    const day = Math.floor(totalSecond / 60 / 60 / 24);
+    const hour = Math.floor((totalSecond / 60 / 60) % 24);
+    const minute = Math.floor((totalSecond / 60) % 60);
+    const second = Math.floor(totalSecond % 60);
+
+    this.countDown = `${day} 天 ${hour} 时 ${minute} 分 ${second} 秒`;
+  }
+
+  handleMore(): void {
+    this.$router.push({
+      name: "Detail",
+      query: {
+        name: this.name,
+      },
+    });
   }
 }
 </script>
