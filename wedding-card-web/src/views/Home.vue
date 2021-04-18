@@ -74,6 +74,8 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import { useRoute } from "vue-router";
+
 Options({});
 export default class extends Vue {
   countDown = "";
@@ -83,7 +85,8 @@ export default class extends Vue {
     return (window as any)._tcbEnv;
   }
   get name(): string {
-    return this.$route.query.name as string;
+    const route = useRoute();
+    return route.query.name as string;
   }
   get groom(): string {
     return this.tcbEnv.GROOM;
@@ -97,7 +100,7 @@ export default class extends Vue {
   get day(): string {
     const date = new Date(Date.parse(this.date));
     const year = date.getFullYear();
-    const month = date.getMonth();
+    const month = date.getMonth() + 1;
     const monthStr = month < 10 ? "0" + month : month;
     const day = date.getDate();
     const dayStr = day < 10 ? "0" + day : day;

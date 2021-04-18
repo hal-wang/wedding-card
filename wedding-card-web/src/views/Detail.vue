@@ -52,8 +52,9 @@
 </template>
 
 <script lang="ts">
-import request from "@/utils/request";
+import request from "@/utils/request"
 import { Options, Vue } from "vue-class-component";
+import { useRoute } from "vue-router";
 
 Options({});
 export default class extends Vue {
@@ -65,7 +66,8 @@ export default class extends Vue {
     return (window as any)._tcbEnv;
   }
   get name(): string {
-    return this.$route.query.name as string;
+    const route = useRoute();
+    return route.query.name as string;
   }
   get date(): string {
     return this.tcbEnv.DATE;
