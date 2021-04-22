@@ -7,13 +7,19 @@ import {
 import linq = require("linq");
 
 export default class extends Action {
-  get cloudPath(): string {
-    const { TCB_ENV, TENCENTCLOUD_APPID, STORAGE_BUCKET } = process.env;
-    return `cloud://${TCB_ENV}.${STORAGE_BUCKET}-${TCB_ENV}-${TENCENTCLOUD_APPID}`;
+  private async getCloudPath(): Promise<string> {
+    const tempFile = "t";
+    const res = await AppInstance.instance.app.getUploadMetadata({
+      cloudPath: tempFile,
+    });
+    const { fileId } = res.data;
+    return fileId.substr(0, fileId.length - tempFile.length - 1);
   }
+  cloudPath!: string;
 
   async do(): Promise<HttpResult> {
     const type = this.requestParams.query.type;
+    this.cloudPath = await this.getCloudPath();
 
     switch (type) {
       case "album":
