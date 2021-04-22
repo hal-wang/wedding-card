@@ -72,11 +72,12 @@ export default class extends Action {
       return [];
     }
     const fileRes = await AppInstance.instance.app.getTempFileURL({
-      fileList: imgs.filter((img) => `${this.cloudPath}/album/${img}`),
+      fileList: imgs.map((img) => `${this.cloudPath}/album/${img}`),
     });
     if (!fileRes.fileList || !fileRes.fileList.length) {
       return [];
     }
+
     return linq
       .from(fileRes.fileList)
       .select((file) => file.tempFileURL)
