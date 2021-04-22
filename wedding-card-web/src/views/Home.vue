@@ -74,7 +74,6 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import { useRoute, useRouter } from "vue-router";
 import request from "../utils/request";
 
 Options({});
@@ -87,8 +86,7 @@ export default class extends Vue {
     return (window as any)._tcbEnv;
   }
   get name(): string {
-    const route = useRoute();
-    return route.query.name as string;
+    return this.$route.query.name as string;
   }
   get groom(): string {
     return this.tcbEnv.GROOM;
@@ -115,21 +113,6 @@ export default class extends Vue {
     await this.initCover();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setup(): any {
-    const router = useRouter();
-    return {
-      handleMore(): void {
-        router.push({
-          name: "Detail",
-          query: {
-            name: this.name,
-          },
-        });
-      },
-    };
-  }
-
   async initCover(): Promise<void> {
     const res = await request.get("res/cover");
     this.cover = res.data.url;
@@ -153,6 +136,17 @@ export default class extends Vue {
     const second = Math.floor(totalSecond % 60);
 
     this.countDown = `${day} 天 ${hour} 时 ${minute} 分 ${second} 秒`;
+  }
+
+  handleMore(): void {
+    console.log("this", this);
+
+    this.$router.push({
+      name: "Detail",
+      query: {
+        name: this.name,
+      },
+    });
   }
 }
 </script>

@@ -54,7 +54,6 @@
 <script lang="ts">
 import request from "../utils/request";
 import { Options, Vue } from "vue-class-component";
-import { useRoute, useRouter } from "vue-router";
 
 Options({});
 export default class extends Vue {
@@ -66,8 +65,7 @@ export default class extends Vue {
     return (window as any)._tcbEnv;
   }
   get name(): string {
-    const route = useRoute();
-    return route.query.name as string;
+    return this.$route.query.name as string;
   }
   get date(): string {
     return this.tcbEnv.DATE;
@@ -95,8 +93,7 @@ export default class extends Vue {
   }
 
   handleAlbum(): void {
-    const router = useRouter();
-    router.push({
+    this.$router.push({
       name: "Album",
     });
   }
