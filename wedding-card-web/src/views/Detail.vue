@@ -52,9 +52,9 @@
 </template>
 
 <script lang="ts">
-import request from "@/utils/request"
+import request from "../utils/request";
 import { Options, Vue } from "vue-class-component";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 Options({});
 export default class extends Vue {
@@ -95,7 +95,8 @@ export default class extends Vue {
   }
 
   handleAlbum(): void {
-    this.$router.push({
+    const router = useRouter();
+    router.push({
       name: "Album",
     });
   }

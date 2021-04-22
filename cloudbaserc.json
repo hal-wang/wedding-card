@@ -23,7 +23,12 @@
             {
               "name": "{{env.API_NAME}}",
               "envVariables": {
-                "ADMIN": "{{env.ADMIN}}"
+                "ADMIN": "{{env.ADMIN}}",
+                "COVER": "{{env.COVER}}",
+                "MUSIC": "{{env.MUSIC}}",
+                "ALBUM": "{{env.ALBUM}}",
+                "FAVICON": "{{env.FAVICON}}",
+                "STORAGE_BUCKET": "{{env.STORAGE_BUCKET}}"
               }
             }
           ],

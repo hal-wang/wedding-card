@@ -4,8 +4,8 @@
     class="flex"
     :style="{ transform: `scale(${scale},${scale})`, margin: margin }"
   >
-    <audio class="back-music" :autoplay="true">
-      <source :src="`./王妃.mp3`" />
+    <audio v-if="music" class="back-music" :autoplay="true">
+      <source :src="music" />
     </audio>
     <div class="app-conatiner">
       <router-view />
@@ -15,9 +15,12 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import request from "./utils/request";
 
 @Options({})
 export default class extends Vue {
+  music = "";
+
   get isWidthLarger(): boolean {
     const innerHeight = window.innerHeight;
     const innerWidth = window.innerWidth;
@@ -42,6 +45,27 @@ export default class extends Vue {
       const top = window.innerHeight / 2 - height / 2;
       return `${top}px 0`;
     }
+  }
+
+  async mounted(): Promise<void> {
+    await this.initMusic();
+    await this.initIcon();
+  }
+
+  async initMusic(): Promise<void> {
+    const res = await request("res/music");
+    this.music = res.data.url;
+  }
+
+  async initIcon(): Promise<void> {
+    const res = await request("res/favicon");
+    const link =
+      <HTMLLinkElement>document.querySelector("link[rel*='icon']") ||
+      document.createElement("link");
+    link.type = "image/x-icon";
+    link.rel = "shortcut icon";
+    link.href = res.data.url;
+    document.getElementsByTagName("head")[0].appendChild(link);
   }
 }
 </script>

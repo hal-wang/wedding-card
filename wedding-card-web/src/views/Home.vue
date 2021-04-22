@@ -3,7 +3,7 @@
     <div
       class="cover-container animate__animated animate__zoomInUp animate__duration-2s"
     >
-      <img class="cover" :src="`./cover.jpg`" alt="" />
+      <img v-if="cover" class="cover" :src="cover" alt="" />
     </div>
     <div class="flex-sub flex flex-direction align-center">
       <div
@@ -74,11 +74,13 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import request from "../utils/request";
 
 Options({});
 export default class extends Vue {
   countDown = "";
+  cover = "";
 
   get tcbEnv(): Record<string, string> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -107,9 +109,30 @@ export default class extends Vue {
     return `${year}-${monthStr}-${dayStr}`;
   }
 
-  created(): void {
+  async created(): Promise<void> {
     this.setCountDown();
     setInterval(this.setCountDown, 1000);
+    await this.initCover();
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setup(): any {
+    const router = useRouter();
+    return {
+      handleMore(): void {
+        router.push({
+          name: "Detail",
+          query: {
+            name: this.name,
+          },
+        });
+      },
+    };
+  }
+
+  async initCover(): Promise<void> {
+    const res = await request.get("res/cover");
+    this.cover = res.data.url;
   }
 
   setCountDown(): void {
@@ -130,15 +153,6 @@ export default class extends Vue {
     const second = Math.floor(totalSecond % 60);
 
     this.countDown = `${day} 天 ${hour} 时 ${minute} 分 ${second} 秒`;
-  }
-
-  handleMore(): void {
-    this.$router.push({
-      name: "Detail",
-      query: {
-        name: this.name,
-      },
-    });
   }
 }
 </script>
