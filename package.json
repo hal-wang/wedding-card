@@ -7,7 +7,7 @@
     "url": "https://github.com/hal-wang/wedding-card"
   },
   "scripts": {
-    "publish": "tcb login && tcb framework deploy"
+    "deploy": "tcb login && tcb framework deploy"
   },
   "keywords": [
     "sfa",

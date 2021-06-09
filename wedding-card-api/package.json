@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "sfa-router-build",
-    "publish": "npm run build && tcb login && tcb fn deploy $1 --force",
+    "deploy": "npm run build && tcb login && tcb fn deploy $1 --force",
     "lint": "eslint src --ext .ts"
   },
   "author": "hal-wang",
