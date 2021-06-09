@@ -1,13 +1,14 @@
-import { Action, HttpResult } from "@hal-wang/cloudbase-access";
+import { Action } from "@sfajs/router";
 import Collections from "../../../lib/Collections";
 
 export default class extends Action {
-  async do(): Promise<HttpResult> {
-    const name = decodeURIComponent(this.requestParams.query.name as string);
+  async invoke(): Promise<void> {
+    const name = this.ctx.req.query.name;
     if (!name) {
-      return this.ok({
+      this.ok({
         exist: false,
       });
+      return;
     }
 
     const countRes = await Collections.people
@@ -15,7 +16,7 @@ export default class extends Action {
         _id: name,
       })
       .count();
-    return this.ok({
+    this.ok({
       exist: !!countRes.total,
     });
   }

@@ -1,10 +1,15 @@
 {
   "compilerOptions": {
+    "lib": [
+      "esnext"
+    ],
     "module": "commonjs",
     "declaration": true,
-    "outDir": "./dist",
-    "target": "ES2020",
+    "outDir": "./dist/v2",
+    "target": "es2019",
     "strict": true
   },
-  "exclude": ["test", "dist", "../functions"]
+  "exclude": [
+    "dist"
+  ]
 }

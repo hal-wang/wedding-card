@@ -7,16 +7,18 @@
     "url": "https://github.com/hal-wang/wedding-card"
   },
   "scripts": {
-    "deploy": "tcb login && tcb framework deploy"
+    "publish": "tcb login && tcb framework deploy"
   },
   "keywords": [
-    "cloudbase-access",
+    "sfa",
+    "@sfajs/router",
+    "@sfajs/cloudbase",
+    "wedding",
     "cloudbase",
     "restful-api",
     "serverless",
     "nodejs",
-    "typescript",
-    "wedding"
+    "typescript"
   ],
   "bugs": {
     "url": "https://github.com/hal-wang/wedding-card/issues",

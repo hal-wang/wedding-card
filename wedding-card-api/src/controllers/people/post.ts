@@ -1,4 +1,4 @@
-import { Action, HttpResult } from "@hal-wang/cloudbase-access";
+import { Action } from "@sfajs/router";
 import Collections from "../../lib/Collections";
 
 export default class extends Action {
@@ -6,20 +6,26 @@ export default class extends Action {
     super(["admin"]);
   }
 
-  async do(): Promise<HttpResult> {
-    const name = this.requestParams.data.name;
-    if (!name) return this.badRequestMsg({ message: "请填写人名" });
+  async invoke(): Promise<void> {
+    const name = this.ctx.req.body.name;
+    if (!name) {
+      this.badRequestMsg({ message: "请填写人名" });
+      return;
+    }
 
     const countRes = await Collections.people
       .where({
         _id: name,
       })
       .count();
-    if (!!countRes.total) return this.noContent();
+    if (!!countRes.total) {
+      this.noContent();
+      return;
+    }
 
     await Collections.people.add({
       _id: name,
     });
-    return this.noContent();
+    this.noContent();
   }
 }

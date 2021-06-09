@@ -1,11 +1,12 @@
 import { Database } from "@cloudbase/node-sdk";
-import { AppInstance } from "@hal-wang/cloudbase-access";
+import { HttpContext } from "sfa";
+import * as tcb from "@cloudbase/node-sdk";
 
 export default class Collections {
-  private static getCollection(
-    collection: string
-  ): Database.CollectionReference {
-    return AppInstance.instance.db.collection(collection);
+  public static ctx: HttpContext;
+
+  private static getCollection(name: string): Database.CollectionReference {
+    return this.ctx.bag<tcb.Database.Db>("CB_DB").collection(name);
   }
 
   static get people(): Database.CollectionReference {
