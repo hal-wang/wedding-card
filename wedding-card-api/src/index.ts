@@ -28,6 +28,7 @@ export const main = async (
     })
     .useRouterParser()
     .add(() => new Auth())
+    .useRouter()
     .run();
 };
 
