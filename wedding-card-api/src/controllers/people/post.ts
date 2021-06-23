@@ -1,6 +1,28 @@
 import { Action } from "@sfajs/router";
 import Collections from "../../lib/Collections";
 
+/**
+ * @openapi
+ * /people:
+ *   post:
+ *     tags:
+ *       - people
+ *     description: Invite someone
+ *     requestBody:
+ *       description: User info
+ *       content:
+ *         application/json:
+ *           schema:
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: someone's name
+ *     responses:
+ *       204:
+ *         description: success
+ *     security:
+ *       - admin: []
+ */
 export default class extends Action {
   constructor() {
     super(["admin"]);

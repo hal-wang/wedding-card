@@ -27,7 +27,8 @@
                 "COVER": "{{env.COVER}}",
                 "MUSIC": "{{env.MUSIC}}",
                 "ALBUM": "{{env.ALBUM}}",
-                "FAVICON": "{{env.FAVICON}}"
+                "FAVICON": "{{env.FAVICON}}",
+                "API_NAME": "{{env.API_NAME}}"
               }
             }
           ],

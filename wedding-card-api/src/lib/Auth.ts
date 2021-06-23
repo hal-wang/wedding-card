@@ -1,12 +1,12 @@
-import { Authority } from "@sfajs/router";
+import { Middleware } from "sfa";
 
-export default class Auth extends Authority {
+export default class Auth extends Middleware {
   async invoke(): Promise<void> {
-    if (!this.roles || !this.roles.length) {
+    if (!this.ctx.actionRoles || !this.ctx.actionRoles.length) {
       return await this.next();
     }
 
-    if (this.roles.includes("admin") && !(await this.adminAuth())) {
+    if (this.ctx.actionRoles.includes("admin") && !(await this.adminAuth())) {
       this.forbiddenMsg({ message: "不是管理员" });
       return;
     }

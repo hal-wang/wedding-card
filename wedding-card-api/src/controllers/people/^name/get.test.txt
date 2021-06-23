@@ -1,2 +1,0 @@
-GET https://wedding-4gbufc140e845226-1253337886.ap-shanghai.service.tcloudbase.com/v2/people/汪文豪
-content-type:application/json
