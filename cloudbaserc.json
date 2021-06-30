@@ -9,7 +9,6 @@
       "preDeploy": {
         "type": "execCommand",
         "commands": [
-          "npm install -g typescript --prefer-offline --no-audit --progress=false",
           "cd wedding-card-api && npm install --prefer-offline --no-audit --progress=false && npm run build"
         ]
       }

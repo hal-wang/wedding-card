@@ -6,8 +6,6 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-  "author": "hal-wang",
-  "license": "MIT",
   "dependencies": {
     "animate.css": "^4.1.1",
     "axios": "^0.21.1",

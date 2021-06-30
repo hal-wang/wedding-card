@@ -1,5 +1,4 @@
 node_modules
-/functions
 dist
 
 package-lock.json

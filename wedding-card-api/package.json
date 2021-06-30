@@ -1,17 +1,12 @@
 {
   "name": "wedding-card-api",
   "version": "1.4.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "build:test": "sh scripts/build.sh test",
-    "sfa-router-build": "sfa-router-build controllers",
+    "build": "sfa-router-build controllers",
     "swagger": "ts-node test/swagger.ts",
-    "deploy:test": "sh scripts/deploy.sh test",
     "lint": "eslint . --ext .ts"
   },
-  "author": "hal-wang",
-  "license": "MIT",
   "dependencies": {
     "@cloudbase/node-sdk": "^2.6.0",
     "@sfajs/cloudbase": "^0.5.0",
@@ -31,6 +26,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "prettier": "^2.3.2",
+    "ts-node": "^10.0.0",
     "typescript": "^4.3.4"
   }
 }

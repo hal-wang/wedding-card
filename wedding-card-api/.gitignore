@@ -1,9 +1,0 @@
-index.d.ts
-index.js
-
-/controllers
-/lib
-/models
-
-package-lock.json
-yarn.lock
