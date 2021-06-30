@@ -47,7 +47,7 @@ export default class extends Action {
   cloudPath!: string;
 
   async invoke(): Promise<void> {
-    const type = this.ctx.req.query.type;
+    const type = this.ctx.req.params.type;
     this.cloudPath = await this.getCloudPath();
 
     switch (type) {
