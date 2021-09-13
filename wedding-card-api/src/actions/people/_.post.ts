@@ -25,7 +25,8 @@ import Collections from "../../lib/Collections";
  */
 export default class extends Action {
   constructor() {
-    super(["admin"]);
+    super();
+    this.metadata.roles = ["admin"];
   }
 
   async invoke(): Promise<void> {

@@ -6,7 +6,7 @@ import "@sfajs/swagger";
 const options = <swaggerJSDoc.Options>(
   JSON.parse(JSON.stringify(swaggerOptions))
 );
-options.apis = ["src/controllers/**/*.ts"];
+options.apis = ["src/actions/**/*.ts"];
 
 new SfaHttp()
   .useSwagger({

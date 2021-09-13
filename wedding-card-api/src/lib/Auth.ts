@@ -2,11 +2,14 @@ import { Middleware } from "sfa";
 
 export default class Auth extends Middleware {
   async invoke(): Promise<void> {
-    if (!this.ctx.actionRoles || !this.ctx.actionRoles.length) {
+    if (!this.ctx.routerMapItem.roles || !this.ctx.routerMapItem.roles.length) {
       return await this.next();
     }
 
-    if (this.ctx.actionRoles.includes("admin") && !(await this.adminAuth())) {
+    if (
+      this.ctx.routerMapItem.roles.includes("admin") &&
+      !(await this.adminAuth())
+    ) {
       this.forbiddenMsg({ message: "不是管理员" });
       return;
     }

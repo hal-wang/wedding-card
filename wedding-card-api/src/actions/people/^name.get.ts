@@ -1,5 +1,5 @@
 import { Action } from "@sfajs/router";
-import Collections from "../../../lib/Collections";
+import Collections from "../../lib/Collections";
 
 /**
  * @openapi

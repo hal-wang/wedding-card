@@ -3,30 +3,30 @@
   "version": "1.4.0",
   "main": "index.js",
   "scripts": {
-    "build": "sfa-router-build controllers",
+    "build": "sfra",
     "swagger": "ts-node test/swagger.ts",
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
-    "@cloudbase/node-sdk": "^2.6.0",
-    "@sfajs/cloudbase": "^0.5.0",
-    "@sfajs/router": "^0.5.2",
-    "@sfajs/swagger": "^0.5.0",
-    "axios": "^0.21.1",
-    "cos-nodejs-sdk-v5": "^2.9.20",
-    "linq": "^3.2.3",
-    "sfa": "^0.5.3"
+    "@cloudbase/node-sdk": "^2.7.1",
+    "@sfajs/cloudbase": "^1.0.1",
+    "@sfajs/router": "^1.2.0",
+    "@sfajs/swagger": "^1.0.1",
+    "axios": "^0.21.4",
+    "cos-nodejs-sdk-v5": "^2.10.2",
+    "linq": "^3.2.4",
+    "sfa": "^1.1.2"
   },
   "devDependencies": {
-    "@sfajs/http": "^0.5.0",
-    "@types/node": "^15.12.5",
-    "@typescript-eslint/eslint-plugin": "^4.28.1",
-    "@typescript-eslint/parser": "^4.28.1",
-    "eslint": "^7.29.0",
+    "@sfajs/http": "^1.0.1",
+    "@types/node": "^16.9.1",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "prettier": "^2.3.2",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.3.4"
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.4.0",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
   }
 }
