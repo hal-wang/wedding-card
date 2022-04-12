@@ -17,6 +17,7 @@
   "exclude": [
     "dist",
     "test",
-    "scripts"
+    "scripts",
+    "http.ts"
   ]
 }

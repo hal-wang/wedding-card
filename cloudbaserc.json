@@ -9,7 +9,8 @@
       "preDeploy": {
         "type": "execCommand",
         "commands": [
-          "cd wedding-card-api && npm install --prefer-offline --no-audit --progress=false && npm run build"
+          "npm i -g yarn && yarn config set registry https://registry.npmjs.org",
+          "cd wedding-card-api && yarn install && yarn build"
         ]
       }
     },
@@ -39,8 +40,8 @@
       "web": {
         "use": "@cloudbase/framework-plugin-website",
         "inputs": {
-          "installCommand": "cd wedding-card-web && npm install --prefer-offline --no-audit --progress=false",
-          "buildCommand": "cd wedding-card-web && npm run build",
+          "installCommand": "cd wedding-card-web && yarn install",
+          "buildCommand": "cd wedding-card-web && yarn build",
           "outputPath": "wedding-card-web/dist",
           "envVariables": {
             "API_NAME": "{{env.API_NAME}}",
