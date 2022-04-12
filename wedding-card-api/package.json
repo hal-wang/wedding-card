@@ -10,7 +10,7 @@
   "dependencies": {
     "@cloudbase/node-sdk": "^2.9.0",
     "@sfajs/cloudbase": "^1.1.1",
-    "@sfajs/core": "^1.2.12",
+    "@sfajs/core": "^1.2.14",
     "@sfajs/inject": "^0.2.0",
     "@sfajs/req-deco": "^0.1.2",
     "@sfajs/router": "^1.4.3",
@@ -19,7 +19,7 @@
     "cos-nodejs-sdk-v5": "^2.11.6"
   },
   "devDependencies": {
-    "@sfajs/http": "^1.0.6",
+    "@sfajs/http": "^1.0.7",
     "@types/node": "^17.0.23",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
