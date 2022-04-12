@@ -6,7 +6,7 @@
 
 网页地址为 `/admin` 则进入管理页，可以添加邀请人并生成邀请二维码。
 
-生成的二维码内容是个网址如 <https://wedding.hal.wang/#/?name=汪文豪>
+生成的二维码内容是个网址如 <https://wedding.hal.wang/#/?name=%E6%B1%AA%E6%96%87%E8%B1%AA>
 
 ## 改用自己用，你需要做：
 
