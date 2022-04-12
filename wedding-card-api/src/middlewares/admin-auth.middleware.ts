@@ -1,15 +1,9 @@
-import { Middleware } from "sfa";
+import { Middleware } from "@sfajs/core";
 
-export default class Auth extends Middleware {
+export class AdminAuthMiddleware extends Middleware {
   async invoke(): Promise<void> {
-    if (!this.ctx.routerMapItem.roles || !this.ctx.routerMapItem.roles.length) {
-      return await this.next();
-    }
-
-    if (
-      this.ctx.routerMapItem.roles.includes("admin") &&
-      !(await this.adminAuth())
-    ) {
+    const admin: boolean = this.ctx.actionMetadata.admin;
+    if (admin && !(await this.adminAuth())) {
       this.forbiddenMsg({ message: "不是管理员" });
       return;
     }

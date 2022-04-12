@@ -1,6 +1,6 @@
 import { Action } from "@sfajs/router";
-import linq = require("linq");
-import * as tcb from "@cloudbase/node-sdk";
+import { Inject } from "@sfajs/inject";
+import { CbappService } from "../../services/cbapp.service";
 
 /**
  * @openapi
@@ -36,9 +36,12 @@ import * as tcb from "@cloudbase/node-sdk";
  *               type: object
  */
 export default class extends Action {
+  @Inject
+  private readonly cbappService!: CbappService;
+
   private async getCloudPath(): Promise<string> {
     const tempFile = "t";
-    const res = await this.ctx.bag<tcb.CloudBase>("CB_APP").getUploadMetadata({
+    const res = await this.cbappService.app.getUploadMetadata({
       cloudPath: tempFile,
     });
     const { fileId } = res.data;
@@ -110,21 +113,18 @@ export default class extends Action {
     if (!imgs || !imgs.length || (imgs.length == 1 && !imgs[0])) {
       return [];
     }
-    const fileRes = await this.ctx.bag<tcb.CloudBase>("CB_APP").getTempFileURL({
+    const fileRes = await this.cbappService.app.getTempFileURL({
       fileList: imgs.map((img) => `${this.cloudPath}/album/${img}`),
     });
     if (!fileRes.fileList || !fileRes.fileList.length) {
       return [];
     }
 
-    return linq
-      .from(fileRes.fileList)
-      .select((file) => file.tempFileURL)
-      .toArray();
+    return fileRes.fileList.map((file) => file.tempFileURL);
   }
 
   async getFile(fileName: string): Promise<{ url: string }> {
-    const fileRes = await this.ctx.bag<tcb.CloudBase>("CB_APP").getTempFileURL({
+    const fileRes = await this.cbappService.app.getTempFileURL({
       fileList: [`${this.cloudPath}/${fileName}`],
     });
     if (!fileRes.fileList || !fileRes.fileList.length) {

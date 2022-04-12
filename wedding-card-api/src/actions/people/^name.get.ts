@@ -1,5 +1,6 @@
+import { Inject } from "@sfajs/inject";
 import { Action } from "@sfajs/router";
-import Collections from "../../lib/Collections";
+import { CollectionService } from "../../services/collection.service";
 
 /**
  * @openapi
@@ -27,6 +28,9 @@ import Collections from "../../lib/Collections";
  *                   description: result
  */
 export default class extends Action {
+  @Inject
+  private readonly collectionService!: CollectionService;
+
   async invoke(): Promise<void> {
     const name = this.ctx.req.params.name;
     if (!name) {
@@ -36,7 +40,7 @@ export default class extends Action {
       return;
     }
 
-    const countRes = await Collections.people
+    const countRes = await this.collectionService.people
       .where({
         _id: name,
       })

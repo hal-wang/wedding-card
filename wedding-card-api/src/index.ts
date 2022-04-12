@@ -1,10 +1,16 @@
-import SfaCloudbase from "@sfajs/cloudbase";
-import Auth from "./lib/Auth";
+import { SfaCloudbase } from "@sfajs/cloudbase";
 import "@sfajs/router";
+import "@sfajs/inject";
 import "@sfajs/swagger";
-import Collections from "./lib/Collections";
+import "@sfajs/req-deco";
 import { swaggerJSDoc } from "@sfajs/swagger";
 import * as fs from "fs";
+import * as dotenv from "dotenv";
+import { AdminAuthMiddleware } from "./middlewares/admin-auth.middleware";
+import { CollectionService } from "./services/collection.service";
+import { CbappService } from "./services/cbapp.service";
+import { InjectType } from "@sfajs/inject";
+import { Startup } from "@sfajs/core";
 
 const version = (() => {
   let path = "./package.json";
@@ -56,26 +62,35 @@ export const swaggerOptions = <swaggerJSDoc.Options>{
   apis: ["actions/**/*.js"],
 };
 
-const startup = new SfaCloudbase()
-  .use(async (ctx, next) => {
-    ctx.res.setHeader("version", version);
-    await next();
-  })
-  .useSwagger({
-    options: swaggerOptions,
-  })
-  .useCloudbaseApp()
-  .useCloudbaseDbhelper()
-  .use(async (ctx, next) => {
-    Collections.ctx = ctx;
-    await next();
-  })
-  .useRouter({
-    onParserAdded: (startup) => {
-      startup.add(() => new Auth());
-    },
+export function setStartup<T extends Startup>(startup: T, dev: boolean): T {
+  dotenv.config({
+    path: "./.env",
   });
+  if (dev) {
+    dotenv.config({
+      path: "./.env.local",
+    });
+  }
 
+  return startup
+    .use(async (ctx, next) => {
+      ctx.res.setHeader("version", version);
+      await next();
+    })
+    .useInject()
+    .inject(CollectionService, InjectType.Singleton)
+    .inject(CbappService, InjectType.Singleton)
+    .useReqDeco()
+    .useSwagger({
+      options: swaggerOptions,
+    })
+    .add(AdminAuthMiddleware)
+    .useRouter({
+      dir: dev ? "src/actions" : "actions",
+    });
+}
+
+const startup = setStartup(new SfaCloudbase(), false);
 export const main = async (
   event: Record<string, unknown>,
   context: Record<string, unknown>

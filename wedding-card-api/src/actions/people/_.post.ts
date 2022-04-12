@@ -1,5 +1,7 @@
+import { Inject } from "@sfajs/inject";
 import { Action } from "@sfajs/router";
-import Collections from "../../lib/Collections";
+import { Admin } from "../../decorators/admin";
+import { CollectionService } from "../../services/collection.service";
 
 /**
  * @openapi
@@ -23,11 +25,11 @@ import Collections from "../../lib/Collections";
  *     security:
  *       - admin: []
  */
+
+@Admin
 export default class extends Action {
-  constructor() {
-    super();
-    this.metadata.roles = ["admin"];
-  }
+  @Inject
+  private readonly collectionService!: CollectionService;
 
   async invoke(): Promise<void> {
     const name = this.ctx.req.body.name;
@@ -36,7 +38,7 @@ export default class extends Action {
       return;
     }
 
-    const countRes = await Collections.people
+    const countRes = await this.collectionService.people
       .where({
         _id: name,
       })
@@ -46,7 +48,7 @@ export default class extends Action {
       return;
     }
 
-    await Collections.people.add({
+    await this.collectionService.people.add({
       _id: name,
     });
     this.noContent();
