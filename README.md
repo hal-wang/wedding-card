@@ -98,7 +98,6 @@ yarn dev
 
 ```
 ENV_ID=cloudbase环境id
-API_NAME=v3 # 不要修改
 ADMIN=管理员密码
 GROOM=新郎姓名
 BRIDE=新娘姓名

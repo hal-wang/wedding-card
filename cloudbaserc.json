@@ -9,7 +9,7 @@
       "preDeploy": {
         "type": "execCommand",
         "commands": [
-          "npm i -g yarn && yarn config set registry https://registry.npmjs.org",
+          "npm i -g yarn --force && yarn config set registry https://registry.npmjs.org",
           "cd wedding-card-api && yarn install && yarn build"
         ]
       }
