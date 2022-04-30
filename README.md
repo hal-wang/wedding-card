@@ -34,6 +34,7 @@
 在 `wedding-card-api` 下创建文件 `.env.local`，内容如下
 
 ```
+SCF_NAMESPACE=cloudbase环境id
 SECRET_KEY=腾讯云 SECRET_KEY
 SECRET_ID=腾讯云 SECRET_ID
 ADMIN=管理员密码
