@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "dev:test": "vite",
+    "dev:test": "vite --mode test",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint:prettier": "prettier --write  \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",

@@ -26,6 +26,8 @@
 
 ## 二次开发
 
+### API
+
 在 `wedding-card-api` 下创建文件 `.env.local`，内容如下
 
 ```
@@ -43,11 +45,45 @@ MUSIC=背景音乐文件名，对应文件上传至云存储根目录
 FAVICON=网页图标文件名，对应文件上传至云存储根目录
 ```
 
-## cli 发布
+#### 运行 API
 
-如果你想本地用 cli 发布，例如二次开发后发布
+先安装依赖，在 `wedding-card-api` 下执行
 
-需要在项目根目录下创建 `.env.local` （注意**不是** `wedding-card-api` 下，**而是**与之同级）
+```bash
+yarn install
+```
+
+再使用 vscode 打开 `wedding-card-api`，直接 F5 开始调试
+
+或在 `wedding-card-api` 目录下执行
+
+```bash
+yarn dev
+```
+
+### Web
+
+先安装依赖，在 `wedding-card-web` 下执行
+
+```bash
+yarn install
+```
+
+再执行下面命令运行
+
+```bash
+yarn dev:test
+```
+
+或使用已发布的接口，需要修改 `wedding-card-web/.env.development` 文件中的 `VITE_GLOB_PROXY_API_URL`
+
+```bash
+yarn dev
+```
+
+### cli 发布
+
+在项目根目录下创建 `.env.local` （注意是项目根目录，不是 API 或 Web 下）
 
 内容如下
 
@@ -62,4 +98,10 @@ COVER=封面文件名，对应文件上传至云存储根目录
 ALBUM=相册文件名，可多个，使用逗号分隔，如 1.jpg,2.png,...。对应文件上传至云 album 目录中
 MUSIC=背景音乐文件名，对应文件上传至云存储根目录
 FAVICON=网页图标文件名，对应文件上传至云存储根目录
+```
+
+在项目根目录下运行以下命令发布
+
+```bash
+npm run deploy
 ```
