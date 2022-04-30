@@ -1,6 +1,6 @@
 {
   "name": "wedding-card",
-  "description": "结婚喜帖",
+  "description": "电子喜帖",
   "homepage": "https://github.com/hal-wang/wedding-card",
   "repository": {
     "type": "git",
@@ -11,8 +11,7 @@
   },
   "keywords": [
     "sfa",
-    "@sfajs/router",
-    "@sfajs/cloudbase",
+    "sfajs",
     "wedding",
     "cloudbase",
     "restful-api",
