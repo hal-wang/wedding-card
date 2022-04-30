@@ -35,8 +35,8 @@
 
 ```
 SCF_NAMESPACE=cloudbase环境id
-SECRET_KEY=腾讯云 SECRET_KEY
-SECRET_ID=腾讯云 SECRET_ID
+SECRET_KEY=腾讯云 secret key
+SECRET_ID=腾讯云 secret id
 ADMIN=管理员密码
 COVER=封面文件名，对应文件上传至云存储根目录
 ALBUM=相册文件名，可多个，使用逗号分隔，如 1.jpg,2.png,...。对应文件上传至云 album 目录中
@@ -82,6 +82,10 @@ yarn dev
 
 ### 发布
 
+可以本地使用 `@cloudbase/cli` 发布，也可以使用 GitHub Actions 持续集成
+
+#### cli 发布
+
 在项目根目录下创建 `.env.local` （注意是项目根目录，不是 API 或 Web 下）
 
 内容如下
@@ -107,3 +111,15 @@ MHID=草料二维码 ID，用于生成喜帖二维码
 ```bash
 npm run deploy
 ```
+
+#### GitHub Actions
+
+仓库增加 Secrets，在 `Settings -> Secrets -> Actions`，点击 `New repository secret` 按钮
+
+- TENCENT_SECRET_ID: 腾讯云 secret id
+- TENCENT_SECRET_KEY: 腾讯云 secret key
+- ENV: 与 `cli 发布` 的 `.env.local` 文件内容相同
+
+配置完成后，每次 main 分支提交代码就会自动发布到 CloudBase
+
+发布进度可在仓库 `Actions` 中看到
