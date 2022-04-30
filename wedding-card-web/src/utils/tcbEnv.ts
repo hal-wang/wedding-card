@@ -18,3 +18,6 @@ if (!tcbEnv['ADDR']) {
 if (!tcbEnv['PHONE']) {
   tcbEnv['PHONE'] = 12345678900;
 }
+if (!tcbEnv['MHID']) {
+  tcbEnv['MHID'] = 'shOUWQDqzJohMHYvKd1dMK0';
+}

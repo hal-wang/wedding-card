@@ -32,9 +32,11 @@
     ),
   );
 
-  const qrApiUrl = computed(
-    () => `https://cli.im/api/qrcode/code?text=${qrUrl.value}&mhid=shOUWQDqzJohMHYvKd1dMK0`,
-  );
+  const qrApiUrl = computed(() => {
+    const tcbEnv = (window as any)._tcbEnv;
+    const mhid = tcbEnv.MHID;
+    return `https://cli.im/api/qrcode/code?text=${qrUrl.value}&mhid=${mhid}`;
+  });
 
   async function handleCreate() {
     if (!name.value) {
