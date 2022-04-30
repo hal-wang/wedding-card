@@ -1,63 +1,93 @@
 {
-  "name": "wedding-card-web",
-  "version": "3.0.0",
+  "name": "vue3-vite-ts-template",
+  "version": "0.0.1",
+  "author": {
+    "name": "hal-wang",
+    "email": "hi@hal.wang",
+    "url": "https://github.com/hal-wang"
+  },
   "scripts": {
-    "dev": "vue-cli-service serve",
-    "dev:prod": "vue-cli-service serve --mode dev-prod",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "dev:test": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint:prettier": "prettier --write  \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
+    "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
+    "lint:stylelint": "stylelint --cache --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
+    "lint:lint-staged": "lint-staged"
   },
   "dependencies": {
+    "@iconify/iconify": "^2.2.1",
     "animate.css": "^4.1.1",
-    "axios": "^0.21.1",
-    "core-js": "^3.10.1",
-    "linq": "^3.2.3",
-    "svg-sprite-loader": "^6.0.5",
-    "vue": "^3.0.0",
-    "vue-class-component": "^8.0.0-0",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "axios": "^0.27.2",
+    "nprogress": "^0.2.0",
+    "pinia": "^2.0.13",
+    "vue": "^3.2.33",
+    "vue-router": "^4.0.14"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.19.0",
-    "@typescript-eslint/parser": "^5.19.0",
-    "@vue/cli-plugin-babel": "^4.5.12",
-    "@vue/cli-plugin-eslint": "^5.0.4",
-    "@vue/cli-plugin-router": "^4.5.12",
-    "@vue/cli-plugin-typescript": "^4.5.12",
-    "@vue/cli-plugin-vuex": "^4.5.12",
-    "@vue/cli-service": "^4.5.12",
-    "@vue/compiler-sfc": "^3.0.11",
-    "@vue/eslint-config-prettier": "^7.0.0",
-    "@vue/eslint-config-typescript": "^10.0.0",
-    "eslint": "^8.13.0",
+    "@iconify/json": "^2.1.34",
+    "@types/node": "^17.0.30",
+    "@types/nprogress": "^0.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^8.6.0",
-    "node-sass": "^5.0.0",
-    "prettier": "^2.2.1",
-    "sass-loader": "^10.1.1",
-    "typescript": "^4.6.3"
+    "eslint-plugin-vue": "^8.7.1",
+    "less": "^4.1.2",
+    "lint-staged": "^12.4.1",
+    "postcss": "^8.4.13",
+    "postcss-html": "^1.4.1",
+    "postcss-less": "^6.0.0",
+    "prettier": "^2.6.2",
+    "stylelint": "^14.8.1",
+    "stylelint-config-html": "^1.0.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recommended": "^7.0.0",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-order": "^5.0.0",
+    "typescript": "^4.6.4",
+    "vite": "^2.9.6",
+    "vite-plugin-purge-icons": "^0.8.1",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vite-plugin-windicss": "^1.8.4",
+    "vue-eslint-parser": "^8.3.0",
+    "vue-tsc": "^0.34.11",
+    "windicss": "^3.5.1"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended",
-      "@vue/typescript/recommended",
-      "@vue/prettier",
-      "@vue/prettier/@typescript-eslint"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hal-wang/vue3-vite-ts-template.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hal-wang/vue3-vite-ts-template/issues"
+  },
+  "homepage": "https://github.com/hal-wang/vue3-vite-ts-template",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
     ],
-    "parserOptions": {
-      "ecmaVersion": 2020
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "{!(package)*.json,*.code-snippets,.!(browserslist)*rc}": [
+      "prettier --write--parser json"
+    ],
+    "package.json": [
+      "prettier --write"
+    ],
+    "*.vue": [
+      "eslint --fix",
+      "prettier --write",
+      "stylelint --fix"
+    ],
+    "*.{scss,less,styl,html}": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.md": [
+      "prettier --write"
+    ]
+  }
 }

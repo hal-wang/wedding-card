@@ -1,43 +1,27 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import type { App } from 'vue';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+import { PAGE_NOT_FOUND_ROUTE } from './basic';
+import { createProgressGuard } from './guard';
 
-const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    name: 'Home',
-    component: () => import('@/views/Home.vue'),
-    meta: {
-      title: '我们结婚啦'
-    }
-  },
-  {
-    path: '/d',
-    name: 'Detail',
-    component: () => import('@/views/Detail.vue'),
-    meta: {
-      title: '喜帖详情'
-    }
-  },
-  {
-    path: '/album',
-    name: 'Album',
-    component: () => import('@/views/Album.vue'),
-    meta: {
-      title: '相册'
-    }
-  },
-  {
-    path: '/admin',
-    name: 'Admin',
-    component: () => import('@/views/Admin.vue'),
-    meta: {
-      title: '管理'
-    }
-  }
-];
-
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes,
+const modules = import.meta.globEager('./modules/**/*.ts');
+const routeModuleList: RouteRecordRaw[] = [PAGE_NOT_FOUND_ROUTE];
+Object.keys(modules).forEach((key) => {
+  const mod = modules[key].default || {};
+  const modList = Array.isArray(mod) ? [...mod] : [mod];
+  routeModuleList.push(...modList);
 });
 
-export default router;
+// app router
+export const router = createRouter({
+  history: createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH as string),
+  routes: routeModuleList,
+  strict: true,
+  scrollBehavior: () => ({ left: 0, top: 0 }),
+});
+
+// config router
+export function setupRouter(app: App<Element>) {
+  app.use(router);
+
+  createProgressGuard(router);
+}
