@@ -2,7 +2,6 @@ import { SfaCloudbase } from "@sfajs/cloudbase";
 import "@sfajs/router";
 import "@sfajs/inject";
 import "@sfajs/swagger";
-import "@sfajs/req-deco";
 import { swaggerJSDoc } from "@sfajs/swagger";
 import * as fs from "fs";
 import * as dotenv from "dotenv";
@@ -21,46 +20,48 @@ const version = (() => {
   return JSON.parse(pkgStr).version;
 })();
 
-export const swaggerOptions = <swaggerJSDoc.Options>{
-  definition: {
-    openapi: "3.0.1",
-    info: {
-      title: "Wedding card",
-      description: "网络喜帖，线上地址 https://wedding.hal.wang",
-      version: version,
-      license: {
-        name: "MIT",
+function getSwaggerOptions(dev: boolean) {
+  return <swaggerJSDoc.Options>{
+    definition: {
+      openapi: "3.0.1",
+      info: {
+        title: "Wedding card",
+        description: "网络喜帖，线上地址 https://wedding.hal.wang",
+        version: version,
+        license: {
+          name: "MIT",
+        },
+        contact: {
+          email: "hi@hal.wang",
+        },
       },
-      contact: {
-        email: "hi@hal.wang",
-      },
-    },
-    servers: [
-      {
-        url: "/" + process.env.API_NAME,
-      },
-    ],
-    schemes: ["https"],
-    tags: [
-      {
-        name: "people",
-      },
-      {
-        name: "res",
-      },
-    ],
-    components: {
-      securitySchemes: {
-        admin: {
-          type: "apiKey",
-          in: "header",
-          name: "admin",
+      servers: [
+        {
+          url: "/" + (dev ? "" : process.env.API_NAME),
+        },
+      ],
+      schemes: ["https"],
+      tags: [
+        {
+          name: "people",
+        },
+        {
+          name: "res",
+        },
+      ],
+      components: {
+        securitySchemes: {
+          admin: {
+            type: "apiKey",
+            in: "header",
+            name: "admin",
+          },
         },
       },
     },
-  },
-  apis: ["actions/**/*.js"],
-};
+    apis: dev ? ["src/actions/**/*.ts"] : ["actions/**/*.js"],
+  };
+}
 
 export function setStartup<T extends Startup>(startup: T, dev: boolean): T {
   dotenv.config({
@@ -80,9 +81,8 @@ export function setStartup<T extends Startup>(startup: T, dev: boolean): T {
     .useInject()
     .inject(CollectionService, InjectType.Singleton)
     .inject(CbappService, InjectType.Singleton)
-    .useReqDeco()
     .useSwagger({
-      options: swaggerOptions,
+      options: getSwaggerOptions(dev),
     })
     .add(AdminAuthMiddleware)
     .useRouter({
