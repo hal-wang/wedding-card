@@ -82,6 +82,8 @@ yarn dev:test
 
 或使用已发布的接口，需要修改 `wedding-card-web/.env.development` 文件中的 `VITE_GLOB_PROXY_API_URL`
 
+然后运行
+
 ```bash
 yarn dev
 ```
