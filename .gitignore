@@ -1,2 +1,7 @@
 .env.local
 .env.*.local
+
+node_modules
+yarn.lock
+
+TCBSAM.yaml

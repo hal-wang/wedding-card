@@ -14,7 +14,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm i -g @cloudbase/cli
+      - run: npm i -g yarn --force && yarn config set registry https://registry.npmjs.org
+      - run: npm install
       - name: Setup ENV
         env:
           ENV: ${{ secrets.ENV }}
@@ -25,5 +26,5 @@ jobs:
           TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
           TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
         run: |
-          tcb login --apiKeyId $TENCENT_SECRET_ID --apiKey $TENCENT_SECRET_KEY
-          tcb framework deploy --mode local
+          npx tcb login --apiKeyId $TENCENT_SECRET_ID --apiKey $TENCENT_SECRET_KEY
+          npx tcb framework deploy --mode local
