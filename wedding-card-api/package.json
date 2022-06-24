@@ -1,11 +1,11 @@
 {
   "name": "wedding-card-api",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "main": "index.js",
   "scripts": {
     "dev": "npm start",
     "start": "sfa start --mode development --watch",
-    "build": "sfra",
+    "build": "sfa build",
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
