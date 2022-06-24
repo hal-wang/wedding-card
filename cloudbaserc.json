@@ -29,7 +29,8 @@
                 "ALBUM": "{{env.ALBUM}}",
                 "FAVICON": "{{env.FAVICON}}",
                 "API_NAME": "{{env.API_NAME}}"
-              }
+              },
+              "runtime": "Nodejs12.16"
             }
           ],
           "servicePaths": {
