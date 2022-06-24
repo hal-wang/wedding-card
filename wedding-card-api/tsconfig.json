@@ -12,7 +12,8 @@
     "skipLibCheck": true,
     "noImplicitAny": false,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "sourceMap": true
   },
   "exclude": [
     "dist",
