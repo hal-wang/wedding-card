@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "SfaJS Http Debugger",
+      "name": "SfaJS CLI Debugger",
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceRoot}",
@@ -18,9 +18,7 @@
         "NODE_ENV": "local"
       },
       "console": "integratedTerminal",
-      "protocol": "auto",
       "restart": true,
-      "port": 2333,
       "autoAttachChildProcesses": true
     }
   ]
