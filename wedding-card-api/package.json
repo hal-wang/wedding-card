@@ -5,12 +5,12 @@
   "scripts": {
     "dev": "npm start",
     "start": "sfa start --mode development --watch",
-    "build": "sfa build",
+    "build": "sfa build --copyPackage",
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
     "@cloudbase/node-sdk": "^2.9.1",
-    "@sfajs/cli": "^0.1.4",
+    "@sfajs/cli": "^0.1.5",
     "@sfajs/cloudbase": "^1.1.4",
     "@sfajs/core": "^1.5.0",
     "@sfajs/filter": "^1.0.5",
