@@ -26,7 +26,7 @@
    - ADDR:详细地址
    - PHONE:电话
    - COVER:封面文件名，对应文件上传至云存储根目录
-   - ALBUM:相册文件名，可多个，使用逗号分隔，如 1.jpg,2.png,...。对应文件上传至云存储 album 目录中
+   - ALBUM:相册文件名，可多个，使用逗号分隔，如 `1.jpg`,`2.png`,... 对应文件上传至云存储 album 目录中
    - MUSIC:背景音乐文件名，对应文件上传至云存储根目录
    - FAVICON:网页图标文件名，对应文件上传至云存储根目录
    - MHID:草料二维码 ID，用于生成喜帖二维码
@@ -55,7 +55,7 @@ FAVICON=网页图标文件名，对应文件上传至云存储根目录
 先安装依赖，在 `wedding-card-api` 下执行
 
 ```bash
-yarn install
+npm install
 ```
 
 再使用 vscode 打开 `wedding-card-api`，直接 F5 开始调试
@@ -63,7 +63,7 @@ yarn install
 或在 `wedding-card-api` 目录下执行
 
 ```bash
-yarn dev
+npm start
 ```
 
 ### Web
@@ -71,13 +71,13 @@ yarn dev
 先安装依赖，在 `wedding-card-web` 下执行
 
 ```bash
-yarn install
+npm install
 ```
 
 再执行下面命令运行
 
 ```bash
-yarn dev:test
+npm run dev:test
 ```
 
 或使用已发布的接口，需要修改 `wedding-card-web/.env.development` 文件中的 `VITE_GLOB_PROXY_API_URL`
@@ -85,7 +85,7 @@ yarn dev:test
 然后运行
 
 ```bash
-yarn dev
+npm run dev
 ```
 
 ### 发布

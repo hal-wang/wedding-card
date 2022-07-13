@@ -10,8 +10,7 @@
     "deploy": "tcb login && tcb framework deploy --mode local"
   },
   "keywords": [
-    "sfa",
-    "sfajs",
+    "ipare",
     "wedding",
     "cloudbase",
     "restful-api",
