@@ -1,5 +1,5 @@
 import { Database } from "@cloudbase/node-sdk";
-import { Inject } from "@sfajs/inject";
+import { Inject } from "@ipare/inject";
 import { CbappService } from "./cbapp.service";
 
 export class CollectionService {

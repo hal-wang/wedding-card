@@ -1,3 +1,3 @@
-import { SetActionMetadata } from "@sfajs/router";
+import { SetActionMetadata } from "@ipare/router";
 
 export const Admin = SetActionMetadata("admin", true);

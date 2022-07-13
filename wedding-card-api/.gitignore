@@ -5,6 +5,6 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
-.sfa-cache
+.ipare-cache
 .env.local
 .env.*.local

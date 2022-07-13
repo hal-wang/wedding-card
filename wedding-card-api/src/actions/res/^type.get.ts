@@ -1,5 +1,5 @@
-import { Action } from "@sfajs/router";
-import { Inject } from "@sfajs/inject";
+import { Action } from "@ipare/router";
+import { Inject } from "@ipare/inject";
 import { CbappService } from "../../services/cbapp.service";
 
 /**

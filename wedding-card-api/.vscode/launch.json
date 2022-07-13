@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "SfaJS CLI Debugger",
+      "name": "Ipare CLI Debugger",
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceRoot}",
@@ -11,8 +11,7 @@
         "runtimeExecutable": "npm.cmd"
       },
       "runtimeArgs": [
-        "run",
-        "dev"
+        "start"
       ],
       "env": {
         "NODE_ENV": "local"

@@ -1,4 +1,4 @@
-import { swaggerJSDoc } from "@sfajs/swagger";
+import { swaggerJSDoc } from "@ipare/swagger";
 
 export function getSwaggerOptions(version: string, dev: boolean) {
   return <swaggerJSDoc.Options>{

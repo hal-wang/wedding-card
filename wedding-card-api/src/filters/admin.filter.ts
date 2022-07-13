@@ -1,5 +1,5 @@
-import { HttpContext } from "@sfajs/core";
-import { AuthorizationFilter } from "@sfajs/filter";
+import { HttpContext } from "@ipare/core";
+import { AuthorizationFilter } from "@ipare/filter";
 
 export class AdminFilter implements AuthorizationFilter {
   async onAuthorization(ctx: HttpContext): Promise<boolean> {

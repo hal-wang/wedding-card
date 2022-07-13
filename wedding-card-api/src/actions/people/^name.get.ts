@@ -1,5 +1,5 @@
-import { Inject } from "@sfajs/inject";
-import { Action } from "@sfajs/router";
+import { Inject } from "@ipare/inject";
+import { Action } from "@ipare/router";
 import { CollectionService } from "../../services/collection.service";
 
 /**

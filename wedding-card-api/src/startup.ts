@@ -1,14 +1,14 @@
-import "@sfajs/router";
-import "@sfajs/inject";
-import "@sfajs/swagger";
+import "@ipare/router";
+import "@ipare/inject";
+import "@ipare/swagger";
 import * as fs from "fs";
 import * as dotenv from "dotenv";
 import { CollectionService } from "./services/collection.service";
 import { CbappService } from "./services/cbapp.service";
-import { InjectType } from "@sfajs/inject";
-import { Startup } from "@sfajs/core";
+import { InjectType } from "@ipare/inject";
+import { Startup } from "@ipare/core";
 import { getSwaggerOptions } from "./utils/swagger";
-import "@sfajs/filter";
+import "@ipare/filter";
 import { AdminFilter } from "./filters/admin.filter";
 
 const version = (() => {
@@ -37,7 +37,7 @@ export default function <T extends Startup>(startup: T, mode?: string): T {
     .inject(CollectionService, InjectType.Singleton)
     .inject(CbappService, InjectType.Singleton)
     .useSwagger({
-      options: getSwaggerOptions(version, dev),
+      docOptions: getSwaggerOptions(version, dev),
     })
     .useGlobalFilter(AdminFilter)
     .useRouter();

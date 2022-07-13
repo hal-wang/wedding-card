@@ -1,7 +1,7 @@
-import { SfaCloudbase } from "@sfajs/cloudbase";
+import { LambdaStartup } from "@ipare/lambda";
 import startup from "./startup";
 
-const app = startup(new SfaCloudbase());
+const app = startup(new LambdaStartup());
 export const main = async (
   event: Record<string, unknown>,
   context: Record<string, unknown>
