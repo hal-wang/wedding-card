@@ -1,6 +1,6 @@
 {
   "name": "wedding-card-api",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "main": "index.js",
   "scripts": {
     "dev": "npm start",
@@ -10,20 +10,20 @@
   },
   "dependencies": {
     "@cloudbase/node-sdk": "^2.9.1",
-    "@ipare/lambda": "^1.3.4",
-    "@ipare/core": "^1.6.2",
-    "@ipare/filter": "^1.0.9",
-    "@ipare/inject": "^1.2.2",
-    "@ipare/pipe": "^1.3.4",
-    "@ipare/router": "^2.1.7",
-    "@ipare/swagger": "^1.0.7",
+    "@ipare/lambda": "^1.3.6",
+    "@ipare/core": "^1.6.3",
+    "@ipare/filter": "^1.0.12",
+    "@ipare/inject": "^1.2.3",
+    "@ipare/pipe": "^1.3.5",
+    "@ipare/router": "^2.1.8",
+    "@ipare/swagger": "^1.0.9",
     "axios": "^0.27.2",
     "cos-nodejs-sdk-v5": "^2.11.12"
   },
   "devDependencies": {
-    "@ipare/cli": "^0.2.3",
-    "@ipare/http": "^1.2.3",
-    "@types/node": "^18.0.3",
+    "@ipare/cli": "^0.2.8",
+    "@ipare/http": "^1.2.4",
+    "@types/node": "^18.0.4",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "dotenv": "^16.0.1",

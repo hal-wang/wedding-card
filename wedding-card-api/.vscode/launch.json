@@ -2,23 +2,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Ipare CLI Debugger",
-      "type": "node",
+      "command": "npm start",
+      "name": "Ipare Http Debugger",
       "request": "launch",
-      "cwd": "${workspaceRoot}",
-      "runtimeExecutable": "npm",
-      "windows": {
-        "runtimeExecutable": "npm.cmd"
-      },
-      "runtimeArgs": [
-        "start"
-      ],
-      "env": {
-        "NODE_ENV": "local"
-      },
-      "console": "integratedTerminal",
-      "restart": true,
-      "autoAttachChildProcesses": true
+      "type": "node-terminal"
     }
   ]
 }
