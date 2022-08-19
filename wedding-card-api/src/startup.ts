@@ -9,15 +9,7 @@ import { InjectType } from "@ipare/inject";
 import { Startup } from "@ipare/core";
 import "@ipare/filter";
 import { AdminFilter } from "./filters/admin.filter";
-
-const version = (() => {
-  let path = "./package.json";
-  while (!fs.existsSync(path)) {
-    path = "../" + path;
-  }
-  const pkgStr = fs.readFileSync(path, "utf-8");
-  return JSON.parse(pkgStr).version;
-})();
+import { getVersion } from "@ipare/env";
 
 export default function <T extends Startup>(startup: T, mode: string): T {
   return startup
@@ -32,7 +24,7 @@ export default function <T extends Startup>(startup: T, mode: string): T {
           .addInfo({
             title: "Wedding card",
             description: "电子喜帖，线上地址 https://wedding.hal.wang",
-            version: version,
+            version: getVersion(process.cwd()) ?? "",
             license: {
               name: "MIT",
             },
@@ -41,7 +33,7 @@ export default function <T extends Startup>(startup: T, mode: string): T {
             },
           })
           .addServer({
-            url: "/" + (mode == "development" ? "" : process.env.API_NAME),
+            url: "/" + (mode == "production" ? process.env.API_NAME : ""),
           })
           .addSecurityScheme("admin", {
             type: "apiKey",
