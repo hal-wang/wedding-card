@@ -1,6 +1,6 @@
 {
   "name": "wedding-card-api",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "main": "index.js",
   "scripts": {
     "start": "ipare start --mode local",
