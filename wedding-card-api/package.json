@@ -1,6 +1,6 @@
 {
   "name": "wedding-card-api",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "main": "index.js",
   "scripts": {
     "start": "ipare start --mode local",
@@ -16,14 +16,13 @@
     "@ipare/inject": "^1.8.5",
     "@ipare/lambda": "^1.8.5",
     "@ipare/pipe": "^1.8.5",
-    "@ipare/router": "^2.1.8",
+    "@ipare/router": "^1.8.5",
     "@ipare/swagger": "^1.8.5",
     "axios": "^0.27.2",
     "cos-nodejs-sdk-v5": "^2.11.12"
   },
   "devDependencies": {
-    "@ipare/cli": "^0.4.5",
-    "@ipare/http": "^1.8.5",
+    "@ipare/cli": "^0.4.6",
     "@types/node": "^18.7.6",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",

@@ -2,7 +2,6 @@ import "@ipare/router";
 import "@ipare/inject";
 import "@ipare/swagger";
 import "@ipare/env";
-import * as fs from "fs";
 import { CollectionService } from "./services/collection.service";
 import { CbappService } from "./services/cbapp.service";
 import { InjectType } from "@ipare/inject";
