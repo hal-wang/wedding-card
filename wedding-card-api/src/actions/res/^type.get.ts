@@ -1,43 +1,40 @@
 import { Action } from "@ipare/router";
 import { Inject } from "@ipare/inject";
 import { CbappService } from "../../services/cbapp.service";
+import { ApiDescription, ApiResponses, ApiTags, DtoEnum } from "@ipare/swagger";
+import { Param } from "@ipare/pipe";
 
-/**
- * @openapi
- * /res/{type}:
- *   get:
- *     tags:
- *       - res
- *     description: Get cloud storage resources
- *     parameters:
- *       - name: type
- *         required: true
- *         in: path
- *         schema:
- *           type: string
- *           default: favicon
- *           enum:
- *             - album
- *             - music
- *             - cover
- *             - favicon
- *     responses:
- *       200:
- *         description: success
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *       400:
- *         description: Can't find environment variable, or the type is error
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- */
+@ApiDescription("Get cloud storage resources")
+@ApiTags("res")
+@ApiResponses({
+  "200": {
+    description: "success",
+    content: {
+      "application/json": {
+        schema: {
+          type: "object",
+        },
+      },
+    },
+  },
+  "400": {
+    description: "Can't find environment variable, or the type is error",
+    content: {
+      "application/json": {
+        schema: {
+          type: "object",
+        },
+      },
+    },
+  },
+})
 export default class extends Action {
   @Inject
   private readonly cbappService!: CbappService;
+
+  @Param("type")
+  @DtoEnum("album", "music", "cover", "favicon")
+  private readonly type!: string;
 
   private async getCloudPath(): Promise<string> {
     const tempFile = "t";
@@ -50,10 +47,9 @@ export default class extends Action {
   cloudPath!: string;
 
   async invoke(): Promise<void> {
-    const type = this.ctx.req.params.type;
     this.cloudPath = await this.getCloudPath();
 
-    switch (type) {
+    switch (this.type) {
       case "album":
         const albumStr = process.env.ALBUM;
         if (!albumStr) {

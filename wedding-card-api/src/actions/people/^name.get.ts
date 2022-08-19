@@ -1,39 +1,38 @@
 import { Inject } from "@ipare/inject";
+import { Param } from "@ipare/pipe";
 import { Action } from "@ipare/router";
+import { ApiDescription, ApiResponses, ApiTags } from "@ipare/swagger";
 import { CollectionService } from "../../services/collection.service";
 
-/**
- * @openapi
- * /people/{name}:
- *   get:
- *     tags:
- *       - people
- *     description: Whether a person exists or not
- *     parameters:
- *       - name: name
- *         required: true
- *         in: path
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: success
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 exist:
- *                   type: bool
- *                   description: result
- */
+@ApiTags("people")
+@ApiDescription("Whether a person exists or not")
+@ApiResponses({
+  "200": {
+    description: "success",
+    content: {
+      "application/json": {
+        schema: {
+          type: "object",
+          properties: {
+            exit: {
+              type: "boolean",
+              description: "result",
+            },
+          },
+        },
+      },
+    },
+  },
+})
 export default class extends Action {
   @Inject
   private readonly collectionService!: CollectionService;
 
+  @Param("name")
+  private readonly name!: string;
+
   async invoke(): Promise<void> {
-    const name = this.ctx.req.params.name;
-    if (!name) {
+    if (!this.name) {
       this.ok({
         exist: false,
       });
@@ -42,7 +41,7 @@ export default class extends Action {
 
     const countRes = await this.collectionService.people
       .where({
-        _id: name,
+        _id: this.name,
       })
       .count();
     this.ok({

@@ -1,46 +1,43 @@
 import { Inject } from "@ipare/inject";
+import { Body } from "@ipare/pipe";
 import { Action } from "@ipare/router";
+import {
+  ApiDescription,
+  ApiResponses,
+  ApiSecurity,
+  ApiTags,
+} from "@ipare/swagger";
 import { Admin } from "../../decorators/admin";
+import { InvitePeopleDto } from "../../dtos/invite-people.dto";
 import { CollectionService } from "../../services/collection.service";
 
-/**
- * @openapi
- * /people:
- *   post:
- *     tags:
- *       - people
- *     description: Invite someone
- *     requestBody:
- *       description: User info
- *       content:
- *         application/json:
- *           schema:
- *             properties:
- *               name:
- *                 type: string
- *                 description: someone's name
- *     responses:
- *       204:
- *         description: success
- *     security:
- *       - admin: []
- */
-
+@ApiTags("people")
+@ApiDescription("Invite someone")
+@ApiResponses({
+  "204": {
+    description: "success",
+  },
+})
+@ApiSecurity({
+  admin: [],
+})
 @Admin
 export default class extends Action {
   @Inject
   private readonly collectionService!: CollectionService;
 
+  @Body
+  private readonly people!: InvitePeopleDto;
+
   async invoke(): Promise<void> {
-    const name = this.ctx.req.body.name;
-    if (!name) {
+    if (!this.people?.name) {
       this.badRequestMsg({ message: "请填写人名" });
       return;
     }
 
     const countRes = await this.collectionService.people
       .where({
-        _id: name,
+        _id: this.people.name,
       })
       .count();
     if (!!countRes.total) {
@@ -49,7 +46,7 @@ export default class extends Action {
     }
 
     await this.collectionService.people.add({
-      _id: name,
+      _id: this.people.name,
     });
     this.noContent();
   }
