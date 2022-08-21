@@ -18,12 +18,12 @@ export default function <T extends Startup>(startup: T, mode: string): T {
     .inject(CollectionService, InjectType.Singleton)
     .inject(CbappService, InjectType.Singleton)
     .useSwagger({
-      builder: (builder) =>
+      builder: async (builder) =>
         builder
           .addInfo({
             title: "Wedding card",
             description: "电子喜帖，线上地址 https://wedding.hal.wang",
-            version: getVersion(process.cwd()) ?? "",
+            version: (await getVersion(process.cwd())) ?? "",
             license: {
               name: "MIT",
             },
