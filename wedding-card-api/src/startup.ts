@@ -2,11 +2,12 @@ import "@ipare/router";
 import "@ipare/inject";
 import "@ipare/swagger";
 import "@ipare/env";
+import "@ipare/filter";
+import "@ipare/logger";
 import { CollectionService } from "./services/collection.service";
 import { CbappService } from "./services/cbapp.service";
 import { InjectType } from "@ipare/inject";
 import { Startup } from "@ipare/core";
-import "@ipare/filter";
 import { AdminFilter } from "./filters/admin.filter";
 import { getVersion } from "@ipare/env";
 
@@ -17,6 +18,13 @@ export default function <T extends Startup>(startup: T, mode: string): T {
     .useInject()
     .inject(CollectionService, InjectType.Singleton)
     .inject(CbappService, InjectType.Singleton)
+    .useConsoleLogger()
+    .use(async (ctx, next) => {
+      const logger = await ctx.getLogger();
+      logger.info("event: " + JSON.stringify(ctx.lambdaEvent));
+      logger.info("context: " + JSON.stringify(ctx.lambdaContext));
+      await next();
+    })
     .useSwagger({
       builder: async (builder) =>
         builder
