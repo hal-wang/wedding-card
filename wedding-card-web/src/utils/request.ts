@@ -47,7 +47,15 @@ export async function request<T = any>(method: Method, params?: ReqParams): Prom
     const error = err as AxiosError;
     if (error.response) {
       const res = error.response as AxiosResponse;
-      await showError(res.data?.message ?? `${res.status} ${res.statusText}`);
+      if (res.data?.message) {
+        if (Array.isArray(res.data.message)) {
+          await showError(res.data.message[0]);
+        } else {
+          await showError(res.data.message);
+        }
+      } else {
+        await showError(`${res.status} ${res.statusText}`);
+      }
     } else {
       await showError((err as Error)?.message ?? '网络连接错误，请检查网络后重试');
     }
