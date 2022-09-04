@@ -1,8 +1,5 @@
 {
   "compilerOptions": {
-    "lib": [
-      "esnext"
-    ],
     "module": "commonjs",
     "declaration": true,
     "outDir": "./dist/v3",
@@ -16,9 +13,6 @@
     "sourceMap": true
   },
   "exclude": [
-    "dist",
-    "test",
-    "scripts",
-    "http.ts"
+    "dist"
   ]
 }
