@@ -28,6 +28,7 @@ export default function <T extends Startup>(startup: T, mode: string): T {
     })
     .useValidator()
     .useSwagger({
+      path: "",
       builder: async (builder) =>
         builder
           .addInfo({
