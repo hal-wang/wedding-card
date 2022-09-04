@@ -1,8 +1,12 @@
-import { DtoDescription, DtoRequired } from "@ipare/swagger";
+import { V } from "@ipare/validator";
 
-@DtoDescription(`People info`)
+@V().Description(`People info`)
 export class InvitePeopleDto {
-  @DtoDescription(`someone's name`)
-  @DtoRequired()
+  @V()
+    .Description(`someone's name`)
+    .Required()
+    .IsString()
+    .MinLength(1)
+    .MinLength(20)
   name!: string;
 }

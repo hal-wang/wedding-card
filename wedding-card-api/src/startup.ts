@@ -4,6 +4,7 @@ import "@ipare/swagger";
 import "@ipare/env";
 import "@ipare/filter";
 import "@ipare/logger";
+import "@ipare/validator";
 import { CollectionService } from "./services/collection.service";
 import { CbappService } from "./services/cbapp.service";
 import { InjectType } from "@ipare/inject";
@@ -25,6 +26,7 @@ export default function <T extends Startup>(startup: T, mode: string): T {
       logger.info("context: " + JSON.stringify(ctx.lambdaContext));
       await next();
     })
+    .useValidator()
     .useSwagger({
       builder: async (builder) =>
         builder

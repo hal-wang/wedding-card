@@ -1,26 +1,18 @@
 import { Inject } from "@ipare/inject";
 import { Body } from "@ipare/pipe";
 import { Action } from "@ipare/router";
-import {
-  ApiDescription,
-  ApiResponses,
-  ApiSecurity,
-  ApiTags,
-} from "@ipare/swagger";
 import { Admin } from "../../decorators/admin";
+import { V } from "@ipare/validator";
 import { InvitePeopleDto } from "../../dtos/invite-people.dto";
 import { CollectionService } from "../../services/collection.service";
 
-@ApiTags("people")
-@ApiDescription("Invite someone")
-@ApiResponses({
-  "204": {
-    description: "success",
-  },
-})
-@ApiSecurity({
-  admin: [],
-})
+@V()
+  .Tags("people")
+  .Description("Invite someone")
+  .ResponseDescription(204, "success")
+  .Security({
+    admin: [],
+  })
 @Admin
 export default class extends Action {
   @Inject

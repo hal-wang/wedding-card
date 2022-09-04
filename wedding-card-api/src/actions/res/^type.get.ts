@@ -1,39 +1,23 @@
 import { Action } from "@ipare/router";
 import { Inject } from "@ipare/inject";
 import { CbappService } from "../../services/cbapp.service";
-import { ApiDescription, ApiResponses, ApiTags, DtoEnum } from "@ipare/swagger";
 import { Param } from "@ipare/pipe";
+import { V } from "@ipare/validator";
 
-@ApiDescription("Get cloud storage resources")
-@ApiTags("res")
-@ApiResponses({
-  "200": {
-    description: "success",
-    content: {
-      "application/json": {
-        schema: {
-          type: "object",
-        },
-      },
-    },
-  },
-  "400": {
-    description: "Can't find environment variable, or the type is error",
-    content: {
-      "application/json": {
-        schema: {
-          type: "object",
-        },
-      },
-    },
-  },
-})
+@V()
+  .Description("Get cloud storage resources")
+  .Tags("res")
+  .ResponseDescription(200, "success")
+  .ResponseDescription(
+    400,
+    "Can't find environment variable, or the type is error"
+  )
 export default class extends Action {
   @Inject
   private readonly cbappService!: CbappService;
 
   @Param("type")
-  @DtoEnum("album", "music", "cover", "favicon")
+  @V().Enum("album", "music", "cover", "favicon")
   private readonly type!: string;
 
   private async getCloudPath(): Promise<string> {
