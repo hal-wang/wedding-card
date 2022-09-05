@@ -1,6 +1,6 @@
 {
   "name": "wedding-card-api",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "main": "index.js",
   "scripts": {
     "start": "ipare start --mode local",
@@ -10,15 +10,15 @@
   },
   "dependencies": {
     "@cloudbase/node-sdk": "^2.9.1",
-    "@ipare/core": "^2.0.2",
-    "@ipare/env": "^2.0.2",
-    "@ipare/filter": "^2.0.2",
-    "@ipare/inject": "^2.0.2",
-    "@ipare/lambda": "^2.0.2",
-    "@ipare/logger": "^2.0.2",
-    "@ipare/pipe": "^2.0.2",
-    "@ipare/router": "^2.0.2",
-    "@ipare/swagger": "^2.0.2",
+    "@ipare/core": "^2.2.1",
+    "@ipare/env": "^2.2.1",
+    "@ipare/filter": "^2.2.1",
+    "@ipare/inject": "^2.2.1",
+    "@ipare/lambda": "^2.2.1",
+    "@ipare/logger": "^2.2.1",
+    "@ipare/pipe": "^2.2.1",
+    "@ipare/router": "^2.2.1",
+    "@ipare/swagger": "^2.2.1",
     "axios": "^0.27.2",
     "cos-nodejs-sdk-v5": "^2.11.12"
   },
