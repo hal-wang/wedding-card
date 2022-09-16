@@ -8,7 +8,7 @@ import { CollectionService } from "../../services/collection.service";
 
 @V()
   .Tags("people")
-  .Description("Invite someone")
+  .Summary("Invite someone")
   .ResponseDescription(204, "success")
   .Security({
     admin: [],

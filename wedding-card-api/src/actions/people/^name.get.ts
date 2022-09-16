@@ -7,7 +7,7 @@ import { FindNameResultDto } from "../../dtos/find-name-result.dto";
 
 @V()
   .Tags("people")
-  .Description("Whether a person exists or not")
+  .Summary("Whether a person exists or not")
   .Response(200, FindNameResultDto)
   .ResponseDescription(200, "success")
 export default class extends Action {

@@ -5,7 +5,7 @@ import { Param } from "@ipare/pipe";
 import { V } from "@ipare/validator";
 
 @V()
-  .Description("Get cloud storage resources")
+  .Summary("Get cloud storage resources")
   .Tags("res")
   .ResponseDescription(200, "success")
   .ResponseDescription(
