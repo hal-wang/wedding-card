@@ -7,6 +7,6 @@ export class InvitePeopleDto {
     .Required()
     .IsString()
     .MinLength(1)
-    .MinLength(20)
+    .MaxLength(20)
   name!: string;
 }
