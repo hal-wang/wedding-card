@@ -1,18 +1,19 @@
 <template>
   <div class="app-container" :style="{ transform: `scale(${scale},${scale})`, margin: margin }">
-    <audio v-if="music" class="back-music" :autoplay="true">
+    <audio v-if="music" ref="audioRef" class="back-music" @canplay="onAudioCanPlay">
       <source :src="music" />
     </audio>
-    <div class="app-conatiner">
+    <div class="router-container">
       <router-view />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { computed, onMounted, ref } from 'vue';
+  import { computed, onMounted, ref, AudioHTMLAttributes } from 'vue';
   import { get } from './utils/request';
 
+  const audioRef = ref<AudioHTMLAttributes>();
   const music = ref('');
 
   const isWidthLarger = computed(() => {
@@ -67,6 +68,16 @@
     link.href = data?.url ?? '';
     document.getElementsByTagName('head')[0].appendChild(link);
   }
+
+  async function onAudioCanPlay() {
+    if (!audioRef.value) return;
+    const audio = audioRef.value;
+    try {
+      await audio['play']();
+    } catch {
+      setTimeout(() => onAudioCanPlay(), 200);
+    }
+  }
 </script>
 
 <style lang="less">
@@ -81,7 +92,7 @@
       width: 0;
     }
 
-    .app-conatiner {
+    .router-container {
       height: 1920px;
       width: 1080px;
     }
